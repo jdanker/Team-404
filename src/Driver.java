@@ -1,9 +1,7 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    private Scanner userInput = new Scanner(System.in);
     private DataLoader dataLoader = new DataLoader();
-    private Boolean isDone = false;
     private Boolean isLoggedIn = false;
 
     /**
@@ -11,12 +9,25 @@ public class Driver {
      * @param args is the String array to take in values.
      */
     public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
+        DataLoader dataLoader = new DataLoader();
+        Boolean isDone = false;
+
         printDashes();
         System.out.println("    Welcome to Local Library");
         printDashes();
 
-        System.out.println("Select an option below to proceed: ");
-        printWelcomeMenu();
+        while(!isDone) {
+
+            System.out.println("Select an option below to proceed: ");
+            printWelcomeMenu();
+
+            userInput.nextInt();
+
+            System.out.println("You entered: " + userInput);
+            isDone = true;
+
+        }
     }
 
     /**
