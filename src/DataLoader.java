@@ -12,7 +12,7 @@ public class DataLoader {
 		ArrayList<book> books = new ArrayList<book>();
 		
 		try {
-			FileReader reader = new FileReader("JSON/books");
+			FileReader reader = new FileReader("JSON/books.json");
 			JSONParser parser = new JSONParser();
 			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
 			JSONArray peopleJSON = (JSONArray)jsonData.get("books");
