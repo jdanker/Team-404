@@ -56,7 +56,7 @@ public class DataLoader {
 				String title = (String)dvdJSON.get("title");
 				long year = (long)dvdJSON.get("year");
 				String genre = (String)dvdJSON.get("genre");
-				String actors = (String)dvdJSON.get("actors");
+				String actors = dvdJSON.get("actors").toString();
 				String director = (String)dvdJSON.get("director");
 				long numCopies = (long)dvdJSON.get("numCopies");
 				boolean newArrival = (boolean)dvdJSON.get("newArrival");
