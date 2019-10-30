@@ -1,4 +1,4 @@
-public class book {
+public class book extends Media {
     long id;
     String title;
     long year;
