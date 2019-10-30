@@ -14,6 +14,16 @@ public abstract class User {
     private String DOB;
     private ArrayList<Media> mediaList;
 
+    /**
+     * This method is the default constructor for the User Abstract Class
+     * @param firstName is the String value for the User object's first name.
+     * @param middleName is the String value for the User object's middle name.
+     * @param lastName is the String value for the User object's last name.
+     * @param email is the String value for the User object's email.
+     * @param address is the String value for the User object's address.
+     * @param DOB is the String value for the User object's date of birth.
+     * @param phoneNumber is the int value for the User object's phone number.
+     */
     public User (
             String firstName,
             String middleName,
@@ -32,19 +42,41 @@ public abstract class User {
         // TODO: Implement a method to assign a user an unique user account number.
     }
 
+    // TODO: Should this be handled by the driver?
     public void login(String email, String password) {}
 
+    /**
+     * This method returns the user to the "Welcome" screen.
+     */
     public void logout() {}
 
+    /**
+     * This method takes in a title (Subject to change) and searches the database for corresponding media
+     * and stores the results in an ArrayList.
+     * @param title is the String value to be searched.
+     * @return an ArrayList of Media objects.
+     */
     public ArrayList<Media> Search(String title) {
         return null;
     }
 
-    public void checkoutMedia (String title) {}
+    /**
+     * This method adds a Media object to the User's Media List. It decrements the number of
+     * available copies.
+     * @param media is the Media object to be added.
+     */
+    public void checkoutMedia (Media media) {}
 
-    public void checkIn (String title) {}
+    /**
+     * This method removes the Media object from the User's Media List and increments the number
+     * of available copies.
+     * @param media is the Media object to be returned.
+     */
+    public void checkIn (Media media) {}
 
-    public void renewMedia (String title) {}
-
-    public void AddHold (String title) {}
+    /**
+     * This method resets the checkout time for the media object.
+     * @param media is the Media object whose time will be reset.
+     */
+    public void renewMedia (Media media) {}
 }
