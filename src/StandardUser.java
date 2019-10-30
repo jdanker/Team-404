@@ -22,11 +22,27 @@ public class StandardUser extends User {
         super(firstName, middleName, lastName, email, address, DOB, phoneNumber);
     }
 
+    /**
+     * This method adds a Media object to the user's hold list.
+     * @param media is the Media object.
+     */
     public void addhold (Media media) {
         this.holds.add(media);
         System.out.println("A hold request for " + media.title + " has been placed.");
     }
 
+    /**
+     * This method creates a ChildUser object and stores it in the standardUser object's
+     * children array list.
+     * @param firstName   is the String value for the User object's first name.
+     * @param middleName  is the String value for the User object's middle name.
+     * @param lastName    is the String value for the User object's last name.
+     * @param email       is the String value for the User object's email.
+     * @param address     is the String value for the User object's address.
+     * @param DOB         is the String value for the User object's date of birth.
+     * @param phoneNumber is the int value for the User object's phone number.
+     * @return a int value that represents the ChildUser's account id.
+     */
     public int addChild(String firstName, String middleName, String lastName, String email, String address, String DOB, int phoneNumber) {
         // TODO: Add info to Child constructor.
         User child = null;
@@ -36,6 +52,11 @@ public class StandardUser extends User {
         return 0;
     }
 
+    /**
+     * This method takes a positive amount and apply it to the user's account balance.
+     * @param amount is an int value to be subtracted from the balance.
+     * @return an int value that represents the user's balance.
+     */
     public int payFees( int amount) {
         // Checks if the user's balance is already zero.
         if (this.balance == 0){
