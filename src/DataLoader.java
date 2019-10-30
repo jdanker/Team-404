@@ -11,16 +11,22 @@ public class DataLoader {
 	private static final String MAGAZINE_FILE_NAME = "JSON/magazines.json";
 	private static final String USER_FILE_NAME = "JSON/users.json";
 
+	/**
+	 * Method that takes in a JSON file full of books, and returns an arrayList of said books
+	 */
+
 	public static ArrayList<book> loadBooks() {
 		ArrayList<book> books = new ArrayList<book>();
 		
 		try {
-			FileReader reader = new FileReader(BOOK_FILE_NAME);
-			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
-			JSONArray booksJSON = (JSONArray)jsonData.get("books");
+			FileReader reader = new FileReader(BOOK_FILE_NAME); //Read in json file
+			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader); //Parser splits it into necessary sections and creates an object for each
+			JSONArray booksJSON = (JSONArray)jsonData.get("books"); //Go into the books section of file (all of it)
 			
-			for(int i=0; i < booksJSON.size(); i++) {
-				JSONObject bookJSON = (JSONObject)booksJSON.get(i);
+			for(int i=0; i < booksJSON.size(); i++) { //For every object created in this json, do this
+				JSONObject bookJSON = (JSONObject)booksJSON.get(i); //Get the current object
+
+				//Pulling all the variables from the object
 				long id = (long)bookJSON.get("id");
 				String title = (String)bookJSON.get("title");
 				long year = (long)bookJSON.get("year");
@@ -30,10 +36,11 @@ public class DataLoader {
 				String author = (String)bookJSON.get("author");
 				long numCopies = (long)bookJSON.get("numCopies");
 				boolean newArrival = (boolean)bookJSON.get("newArrival");
-				
+
+				//Add new book using previous variables
 				books.add(new book(id, title, year, genre, ISBN, publisher, author, numCopies, newArrival));
 			}
-			
+			//return arraylist
 			return books;
 			
 		} catch (Exception e) {
@@ -42,6 +49,11 @@ public class DataLoader {
 		
 		return null;
 	}
+
+	/**
+	 * Same as above for books, except with different member variables
+	 * @return
+	 */
 	public static ArrayList<DVD> loadDvds() {
 		ArrayList<DVD> dvds = new ArrayList<>();
 
@@ -72,6 +84,11 @@ public class DataLoader {
 
 		return null;
 	}
+
+	/**
+	 * Same as above for magazines instead of books and DVD's
+	 * @return
+	 */
 	public static ArrayList<magazine> loadMagazines() {
 		ArrayList<magazine> mags = new ArrayList<>();
 
@@ -94,13 +111,11 @@ public class DataLoader {
 
 				mags.add(new magazine(id, title, year, genre, publisher, volume, issue, numCopies, newArrival));
 			}
-
 			return mags;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 }
