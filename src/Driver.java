@@ -1,8 +1,8 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    private DataLoader dataLoader = new DataLoader();
-    private Boolean isLoggedIn = false;
+    private DataLoader dataLoader;
+    private Boolean isLoggedIn;
 
     /**
      * This method is the main driver method for the program.
@@ -11,7 +11,7 @@ public class Driver {
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
         DataLoader dataLoader = new DataLoader();
-        Boolean isDone = false;
+        boolean isDone = false;
 
         printDashes();
         System.out.println("    Welcome to Local Library");
@@ -19,14 +19,32 @@ public class Driver {
 
         while(!isDone) {
 
-            System.out.println("Select an option below to proceed: ");
             printWelcomeMenu();
+            System.out.println("Select an option to proceed: ");
+            int input = userInput.nextInt();
 
-            userInput.nextInt();
+            switch (input) {
+                case 1:
+                    // TODO: Implement Login method.
+                    System.out.println("Network is currently unavailable.");
+                    printDashes();
+                    break;
 
-            System.out.println("You entered: " + userInput);
-            isDone = true;
+                case 2:
+                    // TODO: Implement Register new user method.
+                    System.out.println("Please wait for a Librarian.");
+                    printDashes();
+                    break;
 
+                case 3:
+                    // TODO: Replace "Local Library" with actual library name.
+                    System.out.println("Thank you for choosing Local Library.");
+                    isDone = true;
+                    break;
+
+                default:
+                    System.out.println("Invalid Input. Please select a valid value: (1 - 3)");
+            }
         }
     }
 
@@ -49,10 +67,22 @@ public class Driver {
     /**
      * This method prints the Administrator User menu to the screen.
      */
-    private void printAdminMenu() {}
+    private void printAdminMenu() {
+        System.out.println("1) Add New Item");
+        System.out.println("2) Apply Fees");
+        System.out.println("3) Log Out");
+    }
 
     /**
      * This method prints the Standard User menu to the screen.
      */
-    private void printStandardMenu() {}
+    private void printStandardMenu() {
+        System.out.println("1) View Media List");
+        System.out.println("1) View Media Hold Status");
+        System.out.println("3) View Account Balance");
+        System.out.println("4) Search for Media");
+        System.out.println("5) Check In Media");
+        System.out.println("6) Register Child");
+        System.out.println("7) Log Out");
+    }
 }
