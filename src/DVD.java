@@ -1,26 +1,22 @@
 public class DVD extends Media {
-    long id;
-    String title;
-    long year;
     String actors;
     String director;
-    long numCopies;
 
-
-    public DVD(long id, String title, long year,  String actors, String director, long numCopies)
+    public DVD(long id, String title, long year, String genre, String actors, String director, long numCopies, boolean newArrival)
     {
-        this.id = id;
+        this.ID = id;
         this.title = title;
         this.year = year;
+        this.genre = genre;
         this.actors = actors;
         this.director = director;
         this.numCopies = numCopies;
-
+        this.newRelease = newArrival;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + "\nTitle: " + title + "\nYear of Release: " + year + "\nGenre: " + genre
+        return "ID: " + ID + "\nTitle: " + title + "\nYear of Release: " + year + "\nGenre: " + genre
                 + "\nActors: " + actors + " \nDirector: " + director + "\nNumber of Copies: " + numCopies;
     }
 }

@@ -1,17 +1,12 @@
 public class book extends Media {
-    long id;
-    String title;
-    long year;
-    String genre;
+
     String ISBN;
     String publisher;
     String author;
-    long numCopies;
-    boolean newArrival;
 
     public book(long id, String title, long year, String genre, String ISBN, String publisher, String author, long numCopies, boolean newArrival)
     {
-        this.id = id;
+        this.ID = id;
         this.title = title;
         this.year = year;
         this.genre = genre;
@@ -19,12 +14,12 @@ public class book extends Media {
         this.publisher = publisher;
         this.author = author;
         this.numCopies = numCopies;
-        this.newArrival = newArrival;
+        this.newRelease = newArrival;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + "\nTitle: " + title + "\nYear of Release: " + year + "\nGenre: " + genre + " \nISBN: " + ISBN
-                + "\nPublisher: " + publisher + " \nAuthor: " + author + "\nNumber of Copies: " + numCopies + "\nNew Arrival: " + newArrival;
+        return "ID: " + ID + "\nTitle: " + title + "\nYear of Release: " + year + "\nGenre: " + genre + " \nISBN: " + ISBN
+                + "\nPublisher: " + publisher + " \nAuthor: " + author + "\nNumber of Copies: " + numCopies + "\nNew Arrival: " + newRelease;
     }
 }
