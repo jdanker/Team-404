@@ -20,7 +20,7 @@ public class Driver {
         while(!isDone) {
 
             printWelcomeMenu();
-            System.out.println("Select an option to proceed: ");
+            System.out.print("Select an option to proceed: ");
             int input = userInput.nextInt();
 
             switch (input) {
@@ -78,7 +78,7 @@ public class Driver {
      */
     private void printStandardMenu() {
         System.out.println("1) View Media List");
-        System.out.println("1) View Media Hold Status");
+        System.out.println("2) View Media Hold Status");
         System.out.println("3) View Account Balance");
         System.out.println("4) Search for Media");
         System.out.println("5) Check In Media");
