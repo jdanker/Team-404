@@ -1,39 +1,57 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    private DataLoader dataLoader;
-    private Boolean isLoggedIn;
+    //private DataLoader dataLoader; // This file is missing.
 
     /**
      * This method is the main driver method for the program.
      * @param args is the String array to take in values.
      */
     public static void main(String[] args) {
+        // Initializing required classes and properties.
         Scanner userInput = new Scanner(System.in);
-        DataLoader dataLoader = new DataLoader();
+        //DataLoader dataLoader = new DataLoader(); // This File is missing
         boolean isDone = false;
+        boolean isLoggedIn = false;
 
-        printDashes();
-        System.out.println("    Welcome to Local Library");
-        printDashes();
+        // The current user logged in.
+        User selectedUser;
+
+        UserInterface.printGreet();
 
         while(!isDone) {
 
-            printWelcomeMenu();
+            UserInterface.printWelcomeMenu();
             System.out.print("Select an option to proceed: ");
             int input = userInput.nextInt();
 
             switch (input) {
                 case 1:
+                    // Gathers the username and password from the User.
+                    System.out.print("Please enter your userName/ID: ");
+                    String un = userInput.next();
+
+                    System.out.print("Please enter your password: ");
+                    String pw = userInput.next();
+
+                    // Checks if user is in the database.
                     // TODO: Implement Login method.
-                    System.out.println("Network is currently unavailable.");
-                    printDashes();
+                    selectedUser = login(un, pw);
+                    isLoggedIn = selectedUser != null;
+
+                    // Runs the appropriate menu according to account type or tell the user the login is invalid.
+                    if (!isLoggedIn) {
+                        System.out.println("The username or password entered is invalid.");
+                    } else {
+                        System.out.println("You are now logged in. Let's run something.");
+                    }
+                    UserInterface.printDashes();
                     break;
 
                 case 2:
                     // TODO: Implement Register new user method.
                     System.out.println("Please wait for a Librarian.");
-                    printDashes();
+                    UserInterface.printDashes();
                     break;
 
                 case 3:
@@ -48,41 +66,28 @@ public class Driver {
         }
     }
 
-    /**
-     * This method prints a decorative line to the screen.
-     */
-    private static void printDashes() {
-        System.out.println("-------------------------------");
+    private static User login(String userName, String password) {
+        // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
+        // TODO: Check for account type.
+        return null;
     }
 
-    /**
-     * This method prints out the "Welcome" menu options to the screen.
-     */
-    private static void printWelcomeMenu() {
-        System.out.println("1) Login");
-        System.out.println("2) Register New User");
-        System.out.println("3) Exit Program");
-    }
+    private static void runUserMenu(char type) {
+        switch (type) {
+            case 'L':
+                // Run Admin Menu sequence.
+                break;
 
-    /**
-     * This method prints the Administrator User menu to the screen.
-     */
-    private void printAdminMenu() {
-        System.out.println("1) Add New Item");
-        System.out.println("2) Apply Fees");
-        System.out.println("3) Log Out");
-    }
+            case 'T':
+                // Run Teacher Menu sequence.
+                break;
 
-    /**
-     * This method prints the Standard User menu to the screen.
-     */
-    private void printStandardMenu() {
-        System.out.println("1) View Media List");
-        System.out.println("2) View Media Hold Status");
-        System.out.println("3) View Account Balance");
-        System.out.println("4) Search for Media");
-        System.out.println("5) Check In Media");
-        System.out.println("6) Register Child");
-        System.out.println("7) Log Out");
+            case 'C':
+                // Run Child User Menu sequence.
+                break;
+
+            default:
+                // Run standard user sequence.
+        }
     }
 }

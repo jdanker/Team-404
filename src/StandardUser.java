@@ -20,6 +20,9 @@ public class StandardUser extends User {
      */
     public StandardUser(String firstName, String middleName, String lastName, String email, String address, String DOB, int phoneNumber) {
         super(firstName, middleName, lastName, email, address, DOB, phoneNumber);
+        this.holds = new ArrayList<>();
+        this.children = new ArrayList<>();
+        this.accountType = 'S';
     }
 
     /**
