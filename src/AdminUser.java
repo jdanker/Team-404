@@ -1,7 +1,8 @@
-import java.util.ArrayList;
+
+import java.util.*;
 
 public class AdminUser extends User {
-
+  private long balance = 0;
   /**
    * This method is the default constructor for the User Abstract Class
    *
@@ -33,7 +34,7 @@ public class AdminUser extends User {
   * @param fee is the fee to be applied to the account
   */
   public void AddFees(int fee) {
-    this.Balance += fee;
-    System.out.println("A fee of "+ fee + " has been added")
+    this.balance += fee;
+    System.out.println("A fee of "+ fee + " has been added");
   }
 }
