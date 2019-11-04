@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    private DataLoader dataLoader;
+    //private DataLoader dataLoader; // This file is missing.
 
     /**
      * This method is the main driver method for the program.
@@ -10,7 +10,7 @@ public class Driver {
     public static void main(String[] args) {
         // Initializing required classes and properties.
         Scanner userInput = new Scanner(System.in);
-        DataLoader dataLoader = new DataLoader();
+        //DataLoader dataLoader = new DataLoader(); // This File is missing
         boolean isDone = false;
         boolean isLoggedIn = false;
 
@@ -72,7 +72,22 @@ public class Driver {
         return null;
     }
 
-    private static void runUserMenu(String type) {
+    private static void runUserMenu(char type) {
+        switch (type) {
+            case 'L':
+                // Run Admin Menu sequence.
+                break;
 
+            case 'T':
+                // Run Teacher Menu sequence.
+                break;
+
+            case 'C':
+                // Run Child User Menu sequence.
+                break;
+
+            default:
+                // Run standard user sequence.
+        }
     }
 }
