@@ -5,11 +5,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;;
 
-public class DataLoader {
+public class LoadMedia {
 	private static final String BOOK_FILE_NAME = "JSON/books.json";
 	private static final String DVD_FILE_NAME = "JSON/dvds.json";
 	private static final String MAGAZINE_FILE_NAME = "JSON/magazines.json";
-	private static final String USER_FILE_NAME = "JSON/users.json";
 
 	/**
 	 * Method that takes in a JSON file full of books, and returns an arrayList of said books
@@ -117,5 +116,30 @@ public class DataLoader {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public ArrayList<Media> getMediaList()
+	{
+		//Creates an array of books from the book json file
+		Books books = Books.getInstance();
+		ArrayList<book> booklist = books.getBooks();
+
+		//Creates array of DVDs from json file
+		DVDs dvds = DVDs.getInstance();
+		ArrayList<DVD> dvdList = dvds.getDVDs();
+
+		//Creates array of magazines from json file
+		Magazines magazines = Magazines.getInstance();
+		ArrayList<magazine> magazineList = magazines.getMagazines();
+
+		//New arraylist to contain all the media types, AKA the whole library system
+		ArrayList<Media> totalMaterialsList = new ArrayList<>();
+
+		//Adds all media into materials list
+		totalMaterialsList.addAll(booklist);
+		totalMaterialsList.addAll(magazineList);
+		totalMaterialsList.addAll(dvdList);
+
+		return totalMaterialsList;
 	}
 }

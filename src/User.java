@@ -42,7 +42,7 @@ public abstract class User {
         // TODO: Implement a method to assign a user an unique user account number.
     }
 
-    // TODO: Should this be handled by the driver?
+    // TODO: Should this be handled by the driver? It could also be a boolean, and if it returns true (login successful), continue. Otherwise loop back and try again
     public void login(String email, String password) {}
 
     /**
