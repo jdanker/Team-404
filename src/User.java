@@ -3,16 +3,17 @@ import java.util.ArrayList;
 public abstract class User {
 
     // Class properties
-    private int accountID;
-    private int phoneNumber;
-    private int checkoutLimit;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String email;
-    private String address;
-    private String DOB;
-    private ArrayList<Media> mediaList;
+    protected int accountID;
+    protected int phoneNumber;
+    protected int checkoutLimit;
+    protected int balance;
+    protected String firstName;
+    protected String middleName;
+    protected String lastName;
+    protected String email;
+    protected String address;
+    protected String DOB;
+    protected ArrayList<Media> mediaList;
 
     /**
      * This method is the default constructor for the User Abstract Class
@@ -38,6 +39,7 @@ public abstract class User {
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.balance = 0;
 
         // TODO: Implement a method to assign a user an unique user account number.
     }

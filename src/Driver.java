@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Driver {
     // Class Properties
     private DataLoader dataLoader;
-    private Boolean isLoggedIn;
+    private boolean isLoggedIn;
 
     /**
      * This method is the main driver method for the program.
@@ -13,9 +13,7 @@ public class Driver {
         DataLoader dataLoader = new DataLoader();
         boolean isDone = false;
 
-        printDashes();
-        System.out.println("    Welcome to Local Library");
-        printDashes();
+        UserInterface.printGreet();
 
         while(!isDone) {
 
