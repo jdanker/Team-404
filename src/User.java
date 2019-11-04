@@ -7,6 +7,7 @@ public abstract class User {
     protected int phoneNumber;
     protected int checkoutLimit;
     protected int balance;
+    protected char accountType;
     protected String firstName;
     protected String middleName;
     protected String lastName;
