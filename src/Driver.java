@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    //private DataLoader dataLoader; // This file is missing.
+    private LoadMedia loadMedia;
 
     /**
      * This method is the main driver method for the program.
@@ -10,7 +10,7 @@ public class Driver {
     public static void main(String[] args) {
         // Initializing required classes and properties.
         Scanner userInput = new Scanner(System.in);
-        //DataLoader dataLoader = new DataLoader(); // This File is missing
+        LoadMedia loadMedia = new LoadMedia();
         boolean isDone = false;
         boolean isLoggedIn = false;
 
@@ -50,7 +50,29 @@ public class Driver {
 
                 case 2:
                     // TODO: Implement Register new user method.
-                    System.out.println("Please wait for a Librarian.");
+                    System.out.print("Enter your first name: ");
+                    String fName = userInput.next();
+
+                    System.out.print("Enter your middle name/initial: ");
+                    String mName = userInput.next();
+
+                    System.out.print("Enter your last name: ");
+                    String lName = userInput.next();
+
+                    System.out.print("Enter your primary email address: ");
+                    String email = userInput.next();
+
+                    System.out.print("Enter your primary mailing address: ");
+                    String addr = userInput.next();
+
+                    System.out.print("Enter your birthday: ");
+                    String bd = userInput.next();
+
+                    System.out.print("Enter your primary phone number: ");
+                    int phone = userInput.nextInt();
+
+                    selectedUser = new StandardUser(fName, mName, lName, email, addr, bd, phone);
+                    // Add this to the database some how. Get unique user ID.
                     UserInterface.printDashes();
                     break;
 
@@ -68,7 +90,6 @@ public class Driver {
 
     private static User login(String userName, String password) {
         // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
-        // TODO: Check for account type.
         return null;
     }
 

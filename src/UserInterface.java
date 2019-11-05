@@ -34,7 +34,7 @@ public class UserInterface {
     /**
      * This method prints the Standard User menu to the screen.
      */
-    public void printStandardMenu() {
+    public static void  printStandardMenu() {
         System.out.println("1) View Media List");
         System.out.println("2) View Media Hold Status");
         System.out.println("3) View Account Balance");

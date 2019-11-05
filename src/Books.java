@@ -5,7 +5,7 @@ public class Books {
 	private static ArrayList<book> bookList = new ArrayList<book>();
 	
 	private Books() {
-		bookList = DataLoader.loadBooks();
+		bookList = LoadMedia.loadBooks();
 	}
 	
 	public static Books getInstance() {
