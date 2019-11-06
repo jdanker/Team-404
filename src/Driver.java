@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    //private DataLoader dataLoader; // This file is missing.
+
 
     /**
      * This method is the main driver method for the program.
@@ -36,6 +36,7 @@ public class Driver {
 
                     // Checks if user is in the database.
                     // TODO: Implement Login method.
+
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
@@ -81,6 +82,15 @@ public class Driver {
     private static User login(String userName, String password) {
         // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
         // TODO: Check for account type.
+      /*
+         if(userName==var && password == var2){
+            loggedIn = true;
+
+         }
+         else loggedIn = false;
+
+       */
+
         return null;
     }
 
