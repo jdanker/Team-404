@@ -7,7 +7,7 @@ public class DVDs {
 
     private DVDs()
     {
-        dvdsList = DataLoader.loadDvds();
+        dvdsList = LoadMedia.loadDvds();
     }
 
     public static DVDs getInstance()

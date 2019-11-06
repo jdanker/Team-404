@@ -6,7 +6,7 @@ public class Magazines {
 
     private Magazines()
     {
-        magazineList = DataLoader.loadMagazines();
+        magazineList = LoadMedia.loadMagazines();
     }
 
     public static Magazines getInstance()
