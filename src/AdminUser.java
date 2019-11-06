@@ -13,18 +13,35 @@ public class AdminUser extends User {
    * @param phoneNumber is the int value for the User object's phone number.
    */
 
-  public AdminUser(long Id, String firstName, String lastName, String email, String address, String DOB, int phoneNumber) {
-    super(Id, firstName, lastName, email, address, DOB, phoneNumber, "L", 0);
-
+  public AdminUser(Long ID, String firstName, String lastName, String email, String address, String DOB, String phoneNumber, Long accountID) {
+    super(ID, firstName, lastName, address, email, phoneNumber, accountID, "L", 0, new ArrayList<Media>()); //L type is for librarian
   }
 
   /**
-  * This method adds a piece of media to the library
+  * These methods adds a piece of media to the library
   * @param media is the object to be added
   */
-  public void AddItem(Media media) {
-    this.mediaList.add(media);
+  public void AddMagazine(magazine media) {
+    JSONReadWrite.addMagazine(media);
     System.out.println(media + " has been added to the library");
+  }
+
+  public void AddBook(book book) {
+    JSONReadWrite.addBook(book);
+    System.out.println(book + " has been added to the library");
+  }
+
+  public void AddItem(DVD dvd) {
+    JSONReadWrite.addDVD(dvd);
+  }
+
+  /**
+   * Adds user to database, if they need to be added manually.
+   * @param user that should be added
+   */
+  public void AddUser(User user) {
+    JSONReadWrite.addUser(user);
+    System.out.println(user + " has been added to the library");
   }
 
   /**

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class User {
 
@@ -14,8 +16,8 @@ public class User {
     protected String email;
     protected String address;
     protected String DOB;
-
-    protected ArrayList<Media> mediaList;
+    protected ArrayList<Media> checkedOut;
+    Scanner input = new Scanner(System.in);
 
     /**
      * This method is the default constructor for the User Abstract Class
@@ -37,7 +39,8 @@ public class User {
             String phoneNumber,
             long accountId,
             String type,
-            long fines) {
+            long fines,
+            ArrayList<Media> checkedOut) {
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,6 +50,7 @@ public class User {
         this.fines = fines;
         this.accountID = accountId;
         this.accountType = type;
+        this.checkedOut = checkedOut;
     }
 
     /**
@@ -69,15 +73,43 @@ public class User {
      * available copies.
      * @param media is the Media object to be added.
      */
-    public void checkoutMedia (Media media) {}
+    public void checkoutMedia (Media media) {
 
-    /**
-     * This method removes the Media object from the User's Media List and increments the number
-     * of available copies.
-     * @param media is the Media object to be returned.
-     */
-    public void checkIn (Media media) {}
+        /**
+         * This method removes the Media object from the User's Media List and increments the number
+         * of available copies.
+         * @param media is the Media object to be returned.
+         */
 
+        System.out.println("Enter new book title to be checked out");
+        String bookCheckout = input.next();
+        if(Books.bookList.contains(bookCheckout)){
+            long num = media.getNumCopies();
+            num -=1;
+            media.setNumCopies(num);
+            checkedOut.add(media);
+
+            System.out.println("------------"+bookCheckout + "has been successfully checked out!--------------");
+        }
+        else{
+            System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked out");
+        }
+    }
+        public void checkIn (Media media){
+            System.out.println("Enter new book title to be checked in");
+            String bookCheckout = input.next();
+            if(Books.bookList.contains(bookCheckout)){
+                long num = media.getNumCopies();
+                num +=1;
+                media.setNumCopies(num);
+                checkedOut.remove(media);
+
+                System.out.println("------------"+bookCheckout + "has been successfully checked in! --------------");
+            }
+            else{
+                System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked in");
+            }
+        }
     /**
      * This method resets the checkout time for the media object.
      * @param media is the Media object whose time will be reset.
