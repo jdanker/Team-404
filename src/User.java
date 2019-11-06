@@ -1,48 +1,52 @@
 import java.util.ArrayList;
 
-public abstract class User {
+public class User {
 
     // Class properties
-    protected int accountID;
-    protected int phoneNumber;
+    protected long ID;
+    protected long accountID;
+    protected String phoneNumber;
     protected int checkoutLimit;
-    protected int balance;
-    protected char accountType;
+    protected long fines;
+    protected String accountType;
     protected String firstName;
-    protected String middleName;
     protected String lastName;
     protected String email;
     protected String address;
     protected String DOB;
+
     protected ArrayList<Media> mediaList;
 
     /**
      * This method is the default constructor for the User Abstract Class
      * @param firstName is the String value for the User object's first name.
-     * @param middleName is the String value for the User object's middle name.
      * @param lastName is the String value for the User object's last name.
      * @param email is the String value for the User object's email.
      * @param address is the String value for the User object's address.
-     * @param DOB is the String value for the User object's date of birth.
-     * @param phoneNumber is the int value for the User object's phone number.
+     * @param phoneNumber is the String value for the User object's phone number.
+     * @param ID is the long value for the User ID number. It is unique to this individual
+     * @param accountId is the long value for the User ID number. It is unique to this individuals family members
+     * @param fines is the long value for total fines due by this User
      */
     public User (
+            long ID,
             String firstName,
-            String middleName,
             String lastName,
-            String email,
             String address,
-            String DOB,
-            int phoneNumber) {
+            String email,
+            String phoneNumber,
+            long accountId,
+            String type,
+            long fines) {
+        this.ID = ID;
         this.firstName = firstName;
-        this.middleName = middleName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.balance = 0;
-
-        // TODO: Implement a method to assign a user an unique user account number.
+        this.fines = fines;
+        this.accountID = accountId;
+        this.accountType = type;
     }
 
     // TODO: Should this be handled by the driver? It could also be a boolean, and if it returns true (login successful), continue. Otherwise loop back and try again

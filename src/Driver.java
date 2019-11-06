@@ -1,7 +1,11 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
+<<<<<<< HEAD
     private LoadMedia loadMedia = new LoadMedia();
+=======
+
+>>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
 
     /**
      * This method is the main driver method for the program.
@@ -36,6 +40,7 @@ public class Driver {
 
                     // Checks if user is in the database.
                     // TODO: Implement Login method.
+
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
@@ -49,6 +54,7 @@ public class Driver {
                     break;
 
                 case 2:
+<<<<<<< HEAD
                     // TODO: Implement Register new user method.
                     System.out.print("Enter your first name: ");
                     String fName = userInput.next();
@@ -75,12 +81,28 @@ public class Driver {
                     // Add this to the database some how. Get unique user ID.
 
                     System.out.println("New user, " + selectedUser.firstName + ", has been created.");
+=======
+                    // TODO: somehow make the new user get stored in a JSON file
+                    System.out.println("Please enter your first name.");
+                    String firstName = userInput.next();
+                    System.out.println("Please enter your last name.");
+                    String lastName = userInput.next();
+                    System.out.println("Please enter your email address");
+                    String email = userInput.next();
+                    System.out.println("Please enter your local address");
+                    String address = userInput.next();
+                    System.out.println("Please enter your Date of Birth");
+                    String DOB = userInput.next();
+                    System.out.println("Please enter your phone number");
+                    int phoneNumber = userInput.nextInt();
+
+                    StandardUser nUser = new StandardUser(firstName, lastName, email, address, DOB, phoneNumber);
+>>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
                     UserInterface.printDashes();
                     break;
 
                 case 3:
-                    // TODO: Replace "Local Library" with actual library name.
-                    System.out.println("Thank you for choosing Local Library.");
+                    System.out.println("Thank you for choosing Team-404 Regional.");
                     isDone = true;
                     break;
 
@@ -92,6 +114,18 @@ public class Driver {
 
     private static User login(String userName, String password) {
         // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
+<<<<<<< HEAD
+=======
+        // TODO: Check for account type.
+      /*
+         if(userName==var && password == var2){
+            loggedIn = true;
+
+         }
+         else loggedIn = false;
+
+       */
+>>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
 
         return null;
     }

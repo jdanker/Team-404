@@ -1,11 +1,13 @@
-import java.util.*;
+import java.util.ArrayList;
 
-public class ChildUser extends User {
+
+public class TeacherUser extends User {
 
     private long balance;
     /**
      * This method is the default constructor for the User Abstract Class
      *
+     * @param ID          is the long value for the USer object's ID
      * @param firstName   is the String value for the User object's first name.
      * @param middleName  is the String value for the User object's middle name.
      * @param lastName    is the String value for the User object's last name.
@@ -14,21 +16,10 @@ public class ChildUser extends User {
      * @param DOB         is the String value for the User object's date of birth.
      * @param phoneNumber is the int value for the User object's phone number.
      */
-    public ChildUser(long ID, String firstName, String lastName, String email, String address,
-                     long DOB, String phoneNumber, long accountID, String type, long fines) {
-        super(ID, firstName, lastName, address, email, phoneNumber, accountID, type, fines);
-        this.balance = (long) 0.0;
-    }
 
-    /**
-     * Method to make a childUser a standardUser when they turn 18
-     */
-<<<<<<< HEAD
-    public User TransformAccount()  {
-        return null;
-=======
-    public User TransformAccount(User user)  {
-        return user;
->>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
+    public TeacherUser(long ID, String firstName, String lastName, String address,
+                       String email, String DOB, String phoneNumber, long accountID, long fines)    {
+        super(ID, firstName, lastName, address, email, phoneNumber, accountID, "Teacher", fines);
+
     }
 }
