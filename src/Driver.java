@@ -44,6 +44,7 @@ public class Driver {
                         System.out.println("The username or password entered is invalid.");
                     } else {
                         System.out.println("You are now logged in. Let's run something.");
+                        runUserMenu(selectedUser, selectedUser.accountType);
                     }
                     UserInterface.printDashes();
                     break;
@@ -99,6 +100,16 @@ public class Driver {
      * @return an User object.
      */
     private static User login(String userName, String password) {
+        User temp = searchUser(userName);
+        assert temp != null;
+        if (temp.lastName.equals(password)) {
+            return temp;
+        }
+        return null;
+    }
+
+    private static User searchUser(String userName)
+    {
         // Loads User ArrayList into a local ArrayList
         ArrayList<User> users = JSONReadWrite.loadUsers();
 
@@ -107,7 +118,7 @@ public class Driver {
 
         // Checks if the user name and password matches existing users.
         for (User user : users) {
-            if (user.firstName.equals(userName) && user.lastName.equals(password)) {
+            if (user.firstName.equals(userName)) {
                 return user;
             }
         }
@@ -118,7 +129,8 @@ public class Driver {
     private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
             case "L":
-                runAdminMenu((AdminUser) selectedUser);
+                AdminUser someUSer = (AdminUser) selectedUser;
+                runAdminMenu(someUSer);
                 break;
 
             case "T":
@@ -139,6 +151,7 @@ public class Driver {
         boolean loggedOut = false;
 
         while (!loggedOut) {
+            UserInterface.printDashes();
             UserInterface.printAdminMenu();
             int userinput = input.nextInt();
 
@@ -168,6 +181,17 @@ public class Driver {
                     break;
 
                 case 2:
+                    System.out.println("Specify the username of the user's account to add a fee: ");
+                    String userName = input.next();
+
+                    System.out.println("Specify the amount to be added: ");
+                    int feeAmount = input.nextInt();
+
+                    User aUser = searchUser(userName);
+                    assert aUser != null;
+                    user.AddFees(feeAmount, aUser);
+
+                    System.out.println("$"+ feeAmount + " has been added to " + aUser.firstName + "'s account balance.");
                     break;
 
                 case 3:
