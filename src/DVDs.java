@@ -7,11 +7,7 @@ public class DVDs {
 
     private DVDs()
     {
-<<<<<<< HEAD
-        dvdsList = LoadMedia.loadDvds();
-=======
         dvdsList = JSONReadWrite.loadDvds();
->>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
     }
 
     public static DVDs getInstance()

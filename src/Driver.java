@@ -1,11 +1,6 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-<<<<<<< HEAD
-    private LoadMedia loadMedia = new LoadMedia();
-=======
-
->>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
 
     /**
      * This method is the main driver method for the program.
@@ -54,34 +49,6 @@ public class Driver {
                     break;
 
                 case 2:
-<<<<<<< HEAD
-                    // TODO: Implement Register new user method.
-                    System.out.print("Enter your first name: ");
-                    String fName = userInput.next();
-
-                    System.out.print("Enter your middle name/initial: ");
-                    String mName = userInput.next();
-
-                    System.out.print("Enter your last name: ");
-                    String lName = userInput.next();
-
-                    System.out.print("Enter your primary email address: ");
-                    String email = userInput.next();
-
-                    System.out.print("Enter your primary mailing address: ");
-                    String address = userInput.next();
-
-                    System.out.print("Enter your birthday: ");
-                    String bd = userInput.next();
-
-                    System.out.print("Enter your primary phone number: ");
-                    int phone = userInput.nextInt();
-
-                    selectedUser = new StandardUser(fName, mName, lName, email, address, bd, phone);
-                    // Add this to the database some how. Get unique user ID.
-
-                    System.out.println("New user, " + selectedUser.firstName + ", has been created.");
-=======
                     // TODO: somehow make the new user get stored in a JSON file
                     System.out.println("Please enter your first name.");
                     String firstName = userInput.next();
@@ -97,7 +64,6 @@ public class Driver {
                     int phoneNumber = userInput.nextInt();
 
                     StandardUser nUser = new StandardUser(firstName, lastName, email, address, DOB, phoneNumber);
->>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
                     UserInterface.printDashes();
                     break;
 
@@ -114,8 +80,6 @@ public class Driver {
 
     private static User login(String userName, String password) {
         // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
-<<<<<<< HEAD
-=======
         // TODO: Check for account type.
       /*
          if(userName==var && password == var2){
@@ -125,7 +89,6 @@ public class Driver {
          else loggedIn = false;
 
        */
->>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
 
         return null;
     }

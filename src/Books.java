@@ -5,11 +5,7 @@ public class Books {
 	public static ArrayList<book> bookList = new ArrayList<book>();
 	
 	private Books() {
-<<<<<<< HEAD
-		bookList = LoadMedia.loadBooks();
-=======
 		bookList = JSONReadWrite.loadBooks();
->>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
 	}
 	
 	public static Books getInstance() {

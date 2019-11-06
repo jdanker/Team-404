@@ -6,11 +6,7 @@ public class Magazines {
 
     private Magazines()
     {
-<<<<<<< HEAD
-        magazineList = LoadMedia.loadMagazines();
-=======
         magazineList = JSONReadWrite.loadMagazines();
->>>>>>> cbb9e4429a7375e839e2292c09296439136ad273
     }
 
     public static Magazines getInstance()
