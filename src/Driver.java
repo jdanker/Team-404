@@ -49,14 +49,26 @@ public class Driver {
                     break;
 
                 case 2:
-                    // TODO: Implement Register new user method.
-                    System.out.println("Please wait for a Librarian.");
+                    // TODO: somehow make the new user get stored in a JSON file
+                    System.out.println("Please enter your first name.");
+                    String firstName = userInput.next();
+                    System.out.println("Please enter your last name.");
+                    String lastName = userInput.next();
+                    System.out.println("Please enter your email address");
+                    String email = userInput.next();
+                    System.out.println("Please enter your local address");
+                    String address = userInput.next();
+                    System.out.println("Please enter your Date of Birth");
+                    String DOB = userInput.next();
+                    System.out.println("Please enter your phone number");
+                    int phoneNumber = userInput.nextInt();
+
+                    StandardUser nUser = new StandardUser(firstName, lastName, email, address, DOB, phoneNumber);
                     UserInterface.printDashes();
                     break;
 
                 case 3:
-                    // TODO: Replace "Local Library" with actual library name.
-                    System.out.println("Thank you for choosing Local Library.");
+                    System.out.println("Thank you for choosing Team-404 Regional.");
                     isDone = true;
                     break;
 

@@ -9,7 +9,6 @@ public abstract class User {
     protected int balance;
     protected char accountType;
     protected String firstName;
-    protected String middleName;
     protected String lastName;
     protected String email;
     protected String address;
@@ -28,14 +27,12 @@ public abstract class User {
      */
     public User (
             String firstName,
-            String middleName,
             String lastName,
             String email,
             String address,
             String DOB,
             int phoneNumber) {
         this.firstName = firstName;
-        this.middleName = middleName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
