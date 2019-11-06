@@ -14,14 +14,14 @@ public class StandardUser extends User {
      * @param lastName    is the String value for the User object's last name.
      * @param email       is the String value for the User object's email.
      * @param address     is the String value for the User object's address.
-     * @param DOB         is the String value for the User object's date of birth.
      * @param phoneNumber is the int value for the User object's phone number.
+     * @param accountID is the int value for the User object's account ID number.
      */
     public StandardUser(long ID, String firstName, String lastName, String address, String email, String phoneNumber, long accountID, String type, long fines) {
         super(ID, firstName, lastName, address, email, phoneNumber, accountID, type, fines);
         this.holds = new ArrayList<>();
         this.children = new ArrayList<>();
-        this.accountType = "Standard";
+        this.accountType = "S";
     }
 
     /**
@@ -43,15 +43,12 @@ public class StandardUser extends User {
      * @param address     is the String value for the User object's address.
      * @param DOB         is the String value for the User object's date of birth.
      * @param phoneNumber is the int value for the User object's phone number.
-     * @return a int value that represents the ChildUser's account id.
      */
-    public int addChild(String firstName, String middleName, String lastName, String email, String address, String DOB, int phoneNumber) {
+    public void addChild(String firstName, String middleName, String lastName, String email, String address, String DOB, int phoneNumber) {
         // TODO: Add info to Child constructor.
         User child = null;
         this.children.add(child);
-        
-        // TODO: Return an unique User account number.
-        return 0;
+
     }
 
     /**
@@ -61,7 +58,7 @@ public class StandardUser extends User {
      */
     public int payFees( int amount) {
         // Checks if the user's balance is already zero.
-        if (this.balance == 0){
+        if (this.fines == 0){
             System.out.println("You have a $0.00 balance");
             return 0;
         }
@@ -71,6 +68,6 @@ public class StandardUser extends User {
             System.out.println("Invalid input. The amount must be positive value.");
         }
 
-        return balance - amount;
+        return (int)this.fines - amount;
     }
 }

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Driver {
     // Class Properties
@@ -9,7 +10,6 @@ public class Driver {
     public static void main(String[] args) {
         // Initializing required classes and properties.
         Scanner userInput = new Scanner(System.in);
-        //LoadMedia loadMedia = new LoadMedia();
         boolean isDone = false;
         boolean isLoggedIn = false;
 
@@ -27,7 +27,7 @@ public class Driver {
             switch (input) {
                 case 1:
                     // Gathers the username and password from the User.
-                    System.out.print("Please enter your username/ID: ");
+                    System.out.print("Please enter your username: ");
                     String un = userInput.next();
 
                     System.out.print("Please enter your password: ");
@@ -50,24 +50,37 @@ public class Driver {
 
                 case 2:
                     // TODO: somehow make the new user get stored in a JSON file
-                    System.out.println("Please enter your first name.");
+                    System.out.println("Please enter your first name:");
                     String firstName = userInput.next();
-                    System.out.println("Please enter your last name.");
-                    String lastName = userInput.next();
-                    System.out.println("Please enter your email address");
-                    String email = userInput.next();
-                    System.out.println("Please enter your local address");
-                    String address = userInput.next();
-                    System.out.println("Please enter your Date of Birth");
-                    String DOB = userInput.next();
-                    System.out.println("Please enter your phone number");
-                    int phoneNumber = userInput.nextInt();
 
-                    StandardUser nUser = new StandardUser(firstName, lastName, email, address, DOB, phoneNumber);
+                    System.out.println("Please enter your last name:");
+                    String lastName = userInput.next();
+
+                    System.out.println("Please enter your email address:");
+                    String email = userInput.next();
+
+                    System.out.println("Please enter your local address:");
+                    String address = userInput.next();
+
+                    System.out.println("Please enter your Date of Birth:");
+                    String DOB = userInput.next();
+
+                    System.out.println("Please enter your phone number:");
+                    String phoneNumber = userInput.next();
+
+                    // Develops an unique user ID from the number of user in the system.
+                    ArrayList<User> users = JSONReadWrite.loadUsers();
+                    assert users != null;
+                    int idNum = users.size() +1;
+
+                    StandardUser newUser = new StandardUser(idNum, firstName, lastName, email, address, phoneNumber,idNum,"S", 0);
+                    System.out.println("New User, " + newUser.firstName + ", has been created.");
+                    System.out.println("Your password is " + newUser.lastName + ".");
                     UserInterface.printDashes();
                     break;
 
                 case 3:
+                    // Exits the Program.
                     System.out.println("Thank you for choosing Team-404 Regional.");
                     isDone = true;
                     break;
@@ -78,32 +91,41 @@ public class Driver {
         }
     }
 
+    /**
+     * This method checks the user's username and password against the user collection from
+     * the database.
+     * @param userName is a string value that represents the user's first name.
+     * @param password is a string value that represents the user's last name.
+     * @return an User object.
+     */
     private static User login(String userName, String password) {
-        // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
-        // TODO: Check for account type.
-      /*
-         if(userName==var && password == var2){
-            loggedIn = true;
+        // Loads User ArrayList into a local ArrayList
+        ArrayList<User> users = JSONReadWrite.loadUsers();
 
-         }
-         else loggedIn = false;
+        // Makes sure the user list is not empty.
+        assert users != null;
 
-       */
-
+        // Checks if the user name and password matches existing users.
+        for (User user : users) {
+            if (user.firstName.equals(userName) && user.lastName.equals(password)) {
+                return user;
+            }
+        }
+        // If user was not found, it returns null.
         return null;
     }
 
-    private static void runUserMenu(char type) {
+    private static void runUserMenu(String type) {
         switch (type) {
-            case 'L':
+            case "L":
                 // Run Admin Menu sequence.
                 break;
 
-            case 'T':
+            case "T":
                 // Run Teacher Menu sequence.
                 break;
 
-            case 'C':
+            case "C":
                 // Run Child User Menu sequence.
                 break;
 

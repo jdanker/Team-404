@@ -2,7 +2,7 @@ public class UserInterface {
 
     public static void printGreet() {
         printDashes();
-        System.out.println("    Welcome to Local Library");
+        System.out.println("    Welcome to Team-404 Regional");
         printDashes();
     }
 

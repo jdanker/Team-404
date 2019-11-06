@@ -13,8 +13,8 @@ public class AdminUser extends User {
    * @param phoneNumber is the int value for the User object's phone number.
    */
 
-  public AdminUser(String firstName, String lastName, String email, String address, String DOB, int phoneNumber) {
-    super(firstName, lastName, email, address, DOB, phoneNumber);
+  public AdminUser(long Id, String firstName, String lastName, String email, String address, String DOB, int phoneNumber) {
+    super(Id, firstName, lastName, email, address, DOB, phoneNumber, "L", 0);
 
   }
 
@@ -33,7 +33,7 @@ public class AdminUser extends User {
    * @param user is the User object the fee will be added to.
    */
   public void AddFees(int fee, User user) {
-    user.balance += fee;
+    user.fines += fee;
     System.out.println("A fee of "+ fee + " has been added");
   }
 }

@@ -49,9 +49,6 @@ public class User {
         this.accountType = type;
     }
 
-    // TODO: Should this be handled by the driver? It could also be a boolean, and if it returns true (login successful), continue. Otherwise loop back and try again
-    public void login(String email, String password) {}
-
     /**
      * This method returns the user to the "Welcome" screen.
      */
