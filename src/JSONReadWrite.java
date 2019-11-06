@@ -159,6 +159,44 @@ public class JSONReadWrite {
 	}
 
 	/**
+	 * Takes in user file, and returns the arrayList of all users in file.
+	 *
+	 * @return Arraylist of all Users in JSON files
+	 */
+	public static ArrayList<User> loadUsers() {
+		ArrayList<User> users = new ArrayList<User>();
+
+		try {
+			FileReader reader = new FileReader(USER_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONObject jsonData = (JSONObject) parser.parse(reader);
+			JSONArray usersJSON = (JSONArray) jsonData.get("users");
+			for (int i = 0; i < usersJSON.size(); i++) {
+				JSONObject userJSON = (JSONObject) usersJSON.get(i);
+
+				long id = (long) userJSON.get("id");
+				String firstName = (String) userJSON.get("firstName");
+				String lastName = (String) userJSON.get("lastName");
+				String address = (String) userJSON.get("address");
+				String email = (String) userJSON.get("email");
+				String phone = (String) userJSON.get("phone");
+				long accountId = (long) userJSON.get("accountId");
+				String type = (String) userJSON.get("type");
+				long fines = (long) userJSON.get("fines");
+
+				users.add(new User(id, firstName, lastName, address, email, phone, accountId, type, fines));
+			}
+
+			return users;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	/**
 	 * Adds a given book to the inventory
 	 *
 	 * @param book to be added to inventory JSON
@@ -278,6 +316,41 @@ public class JSONReadWrite {
 			e.printStackTrace();
 		}
 	}
+
+	public static void addUser(User user) {
+		try {
+			FileReader reader = new FileReader(USER_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONObject jsonData = (JSONObject) parser.parse(reader);
+			JSONArray usersJson = (JSONArray) jsonData.get("users");
+
+			JSONObject newUserDetails = new JSONObject();
+
+			newUserDetails.put("id", user.ID);
+			newUserDetails.put("firstName", user.firstName);
+			newUserDetails.put("lastName", user.lastName);
+			newUserDetails.put("address", user.address);
+			newUserDetails.put("email", user.email);
+			newUserDetails.put("phone", user.phoneNumber);
+			newUserDetails.put("accountId", user.accountID);
+			newUserDetails.put("type", user.accountType);
+			newUserDetails.put("fines", user.fines);
+
+			usersJson.add(newUserDetails);
+			jsonData.put("users", usersJson);
+
+
+			try (FileWriter file = new FileWriter(DVD_FILE_NAME)) {
+				file.write(jsonData.toJSONString());
+				file.flush();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Remove any books with matching titles
 	 * @param title - Title of book(s) you would like to remove
@@ -338,7 +411,6 @@ public class JSONReadWrite {
 					dvdJSON.remove(i);
 				}
 			}
-
 			jsonData.clear();
 			jsonData.put("dvds", dvdJSON);
 
@@ -377,7 +449,6 @@ public class JSONReadWrite {
 					magazineJSON.remove(i);
 				}
 			}
-
 			jsonData.clear();
 			jsonData.put("magazines", magazineJSON);
 
@@ -389,6 +460,39 @@ public class JSONReadWrite {
 				e.printStackTrace();
 			}
 			System.out.println("Any magazine with title: " + title + " has been removed.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteUser(String firstName, String lastName) {
+		try {
+			FileReader reader = new FileReader(USER_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONObject jsonData = (JSONObject) parser.parse(reader);
+			JSONArray usersArray = (JSONArray) jsonData.get("users");
+
+			for(int i = 0; i < usersArray.size(); i++)
+			{
+				JSONObject currentuser = (JSONObject)usersArray.get(i);
+				String currentFirstName = (String)currentuser.get("firstName");
+				String currentLastName = (String)currentuser.get("lastName");
+				if(currentFirstName.equalsIgnoreCase(firstName) && currentLastName.equalsIgnoreCase(lastName))
+				{
+					usersArray.remove(i);
+				}
+			}
+			jsonData.clear();
+			jsonData.put("users", usersArray);
+
+			try (FileWriter file = new FileWriter(DVD_FILE_NAME)) {
+				file.write(jsonData.toJSONString());
+				file.flush();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("Any user with name: " + firstName + " " + lastName + " has been removed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,18 +1,20 @@
 import java.util.ArrayList;
 
-public abstract class User {
+public class User {
 
     // Class properties
-    protected int accountID;
-    protected int phoneNumber;
+    protected long ID;
+    protected long accountID;
+    protected String phoneNumber;
     protected int checkoutLimit;
-    protected int balance;
-    protected char accountType;
+    protected long fines;
+    protected String accountType;
     protected String firstName;
     protected String lastName;
     protected String email;
     protected String address;
     protected String DOB;
+
     protected ArrayList<Media> mediaList;
 
     /**
@@ -25,20 +27,24 @@ public abstract class User {
      * @param phoneNumber is the int value for the User object's phone number.
      */
     public User (
+            long ID,
             String firstName,
             String lastName,
-            String email,
             String address,
-            String DOB,
-            int phoneNumber) {
+            String email,
+            String phoneNumber,
+            long accountId,
+            String type,
+            long fines) {
+        this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.balance = 0;
-
-        // TODO: Implement a method to assign a user an unique user account number.
+        this.fines = fines;
+        this.accountID = accountId;
+        this.accountType = type;
     }
 
     // TODO: Should this be handled by the driver? It could also be a boolean, and if it returns true (login successful), continue. Otherwise loop back and try again
