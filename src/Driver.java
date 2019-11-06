@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    private LoadMedia loadMedia;
+    private LoadMedia loadMedia = new LoadMedia();
 
     /**
      * This method is the main driver method for the program.
@@ -10,7 +10,7 @@ public class Driver {
     public static void main(String[] args) {
         // Initializing required classes and properties.
         Scanner userInput = new Scanner(System.in);
-        LoadMedia loadMedia = new LoadMedia();
+        //LoadMedia loadMedia = new LoadMedia();
         boolean isDone = false;
         boolean isLoggedIn = false;
 
@@ -28,7 +28,7 @@ public class Driver {
             switch (input) {
                 case 1:
                     // Gathers the username and password from the User.
-                    System.out.print("Please enter your userName/ID: ");
+                    System.out.print("Please enter your username/ID: ");
                     String un = userInput.next();
 
                     System.out.print("Please enter your password: ");
@@ -63,7 +63,7 @@ public class Driver {
                     String email = userInput.next();
 
                     System.out.print("Enter your primary mailing address: ");
-                    String addr = userInput.next();
+                    String address = userInput.next();
 
                     System.out.print("Enter your birthday: ");
                     String bd = userInput.next();
@@ -71,8 +71,10 @@ public class Driver {
                     System.out.print("Enter your primary phone number: ");
                     int phone = userInput.nextInt();
 
-                    selectedUser = new StandardUser(fName, mName, lName, email, addr, bd, phone);
+                    selectedUser = new StandardUser(fName, mName, lName, email, address, bd, phone);
                     // Add this to the database some how. Get unique user ID.
+
+                    System.out.println("New user, " + selectedUser.firstName + ", has been created.");
                     UserInterface.printDashes();
                     break;
 
@@ -90,6 +92,7 @@ public class Driver {
 
     private static User login(String userName, String password) {
         // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
+
         return null;
     }
 
