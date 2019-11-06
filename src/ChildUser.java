@@ -21,7 +21,7 @@ public class ChildUser extends User {
     /**
      * Method to make a childUser a standardUser when they turn 18
      */
-    public User TransformAccount()  {
-
+    public User TransformAccount(User user)  {
+        return user;
     }
 }
