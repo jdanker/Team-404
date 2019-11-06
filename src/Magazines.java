@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Magazines {
     private static Magazines magazines = null;
-    private static ArrayList<magazine> magazineList = new ArrayList<magazine>();
+    public static ArrayList<magazine> magazineList = new ArrayList<magazine>();
 
     private Magazines()
     {
-        magazineList = LoadMedia.loadMagazines();
+        magazineList = JSONReadWrite.loadMagazines();
     }
 
     public static Magazines getInstance()
