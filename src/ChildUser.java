@@ -1,8 +1,5 @@
 import java.util.*;
 
-/**
- * @author Larry Gunter
- */
 public class ChildUser extends User {
 
     private long balance;
@@ -24,7 +21,7 @@ public class ChildUser extends User {
     /**
      * Method to make a childUser a standardUser when they turn 18
      */
-//    public User TransformAccount()  {
-//
-//    }
+    public User TransformAccount()  {
+
+    }
 }

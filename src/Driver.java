@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Driver {
     // Class Properties
-    //private DataLoader dataLoader; // This file is missing.
+
 
     /**
      * This method is the main driver method for the program.
@@ -36,6 +36,7 @@ public class Driver {
 
                     // Checks if user is in the database.
                     // TODO: Implement Login method.
+
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
@@ -49,14 +50,26 @@ public class Driver {
                     break;
 
                 case 2:
-                    // TODO: Implement Register new user method.
-                    System.out.println("Please wait for a Librarian.");
+                    // TODO: somehow make the new user get stored in a JSON file
+                    System.out.println("Please enter your first name.");
+                    String firstName = userInput.next();
+                    System.out.println("Please enter your last name.");
+                    String lastName = userInput.next();
+                    System.out.println("Please enter your email address");
+                    String email = userInput.next();
+                    System.out.println("Please enter your local address");
+                    String address = userInput.next();
+                    System.out.println("Please enter your Date of Birth");
+                    String DOB = userInput.next();
+                    System.out.println("Please enter your phone number");
+                    int phoneNumber = userInput.nextInt();
+
+                    StandardUser nUser = new StandardUser(firstName, lastName, email, address, DOB, phoneNumber);
                     UserInterface.printDashes();
                     break;
 
                 case 3:
-                    // TODO: Replace "Local Library" with actual library name.
-                    System.out.println("Thank you for choosing Local Library.");
+                    System.out.println("Thank you for choosing Team-404 Regional.");
                     isDone = true;
                     break;
 
@@ -69,6 +82,15 @@ public class Driver {
     private static User login(String userName, String password) {
         // TODO: Once database can retrieve user data, check for user name match, then check for matching password.
         // TODO: Check for account type.
+      /*
+         if(userName==var && password == var2){
+            loggedIn = true;
+
+         }
+         else loggedIn = false;
+
+       */
+
         return null;
     }
 

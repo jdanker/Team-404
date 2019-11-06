@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class DVDs {
 
     private static DVDs dvds = null;
-    private static ArrayList<DVD> dvdsList = new ArrayList<DVD>();
+    public static ArrayList<DVD> dvdsList = new ArrayList<DVD>();
 
     private DVDs()
     {
-        dvdsList = DataLoader.loadDvds();
+        dvdsList = JSONReadWrite.loadDvds();
     }
 
     public static DVDs getInstance()
