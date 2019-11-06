@@ -17,11 +17,11 @@ public class StandardUser extends User {
      * @param DOB         is the String value for the User object's date of birth.
      * @param phoneNumber is the int value for the User object's phone number.
      */
-    public StandardUser(String firstName, String lastName, String email, String address, String DOB, int phoneNumber) {
-        super(firstName, lastName, email, address, DOB, phoneNumber);
+    public StandardUser(long ID, String firstName, String lastName, String address, String email, String phoneNumber, long accountID, String type, long fines) {
+        super(ID, firstName, lastName, address, email, phoneNumber, accountID, type, fines);
         this.holds = new ArrayList<>();
         this.children = new ArrayList<>();
-        this.accountType = 'S';
+        this.accountType = "Standard";
     }
 
     /**
