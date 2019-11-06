@@ -23,8 +23,10 @@ public class User {
      * @param lastName is the String value for the User object's last name.
      * @param email is the String value for the User object's email.
      * @param address is the String value for the User object's address.
-     * @param DOB is the String value for the User object's date of birth.
-     * @param phoneNumber is the int value for the User object's phone number.
+     * @param phoneNumber is the String value for the User object's phone number.
+     * @param ID is the long value for the User ID number. It is unique to this individual
+     * @param accountId is the long value for the User ID number. It is unique to this individuals family members
+     * @param fines is the long value for total fines due by this User
      */
     public User (
             long ID,
