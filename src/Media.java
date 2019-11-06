@@ -23,7 +23,7 @@ public abstract class Media {
         this.genre = genre;
     }
 
-    public static String getTitle() {
+    public String getTitle() {
         return title;
     }
 

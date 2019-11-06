@@ -2,7 +2,7 @@ public class UserInterface {
 
     public static void printGreet() {
         printDashes();
-        System.out.println("    Welcome to Team-404 Regional");
+        System.out.println(" Welcome to Team-404 Regional");
         printDashes();
     }
 
@@ -25,10 +25,11 @@ public class UserInterface {
     /**
      * This method prints the Administrator User menu to the screen.
      */
-    public void printAdminMenu() {
+    public static void printAdminMenu() {
         System.out.println("1) Add New Item");
         System.out.println("2) Apply Fees");
         System.out.println("3) Log Out");
+        System.out.print("Select an option to proceed: ");
     }
 
     /**
@@ -42,5 +43,21 @@ public class UserInterface {
         System.out.println("5) Check In Media");
         System.out.println("6) Register Child");
         System.out.println("7) Log Out");
+    }
+
+    public static void printChildMenu() {
+        System.out.println("1) View Media List");
+        System.out.println("2) Check out Media");
+        System.out.println("3) Check In Media");
+        System.out.println("4) Log Out");
+    }
+
+    public static void printTeacherMenu() {
+        System.out.println("1) View Media List");
+        System.out.println("2) View Media Hold Status");
+        System.out.println("3) View Account Balance");
+        System.out.println("4) Check out Media");
+        System.out.println("5) Check In Media");
+        System.out.println("6) Log Out");
     }
 }

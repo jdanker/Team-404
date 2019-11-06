@@ -18,10 +18,9 @@ public class StandardUser extends User {
      * @param accountID is the int value for the User object's account ID number.
      */
     public StandardUser(long ID, String firstName, String lastName, String address, String email, String phoneNumber, long accountID, String type, long fines) {
-        super(ID, firstName, lastName, address, email, phoneNumber, accountID, type, fines);
+        super(ID, firstName, lastName, address, email, phoneNumber, accountID, type, fines, new ArrayList<>());
         this.holds = new ArrayList<>();
         this.children = new ArrayList<>();
-        this.accountType = "S";
     }
 
     /**
@@ -41,14 +40,12 @@ public class StandardUser extends User {
      * @param lastName    is the String value for the User object's last name.
      * @param email       is the String value for the User object's email.
      * @param address     is the String value for the User object's address.
-     * @param DOB         is the String value for the User object's date of birth.
      * @param phoneNumber is the int value for the User object's phone number.
      */
-    public void addChild(String firstName, String middleName, String lastName, String email, String address, String DOB, int phoneNumber) {
+    public void addChild(long id, String firstName, String middleName, String lastName, String email, String address, long DOB, String phoneNumber, long accountID, String type, long fines) {
         // TODO: Add info to Child constructor.
-        User child = null;
+        User child = new ChildUser(id, firstName, lastName, address, email, DOB, phoneNumber, accountID, type, fines);
         this.children.add(child);
-
     }
 
     /**

@@ -184,7 +184,7 @@ public class JSONReadWrite {
 				String type = (String) userJSON.get("type");
 				long fines = (long) userJSON.get("fines");
 
-				users.add(new User(id, firstName, lastName, address, email, phone, accountId, type, fines));
+				users.add(new User(id, firstName, lastName, address, email, phone, accountId, type, fines, new ArrayList<Media>()));
 			}
 
 			return users;

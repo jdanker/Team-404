@@ -19,7 +19,7 @@ public class TeacherUser extends User {
 
     public TeacherUser(long ID, String firstName, String lastName, String address,
                        String email, String DOB, String phoneNumber, long accountID, long fines)    {
-        super(ID, firstName, lastName, address, email, phoneNumber, accountID, "Teacher", fines);
+        super(ID, firstName, lastName, address, email, phoneNumber, accountID, "T", fines, new ArrayList<>());
 
     }
 }
