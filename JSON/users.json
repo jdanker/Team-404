@@ -8,7 +8,7 @@
     "phone":"803-565-4433",
     "accountId":1,
     "type":"L",
-    "fines": 0
+    "fines": 0.0
   },{
   	"id":2,
   	"firstName":"Amy",
@@ -38,7 +38,7 @@
     "phone":"803-232-7788",
     "accountId":4,
     "type":"P",
-    "fines":0
+    "fines":0.0
   },{
   	"id":5,
   	"firstName":"Jed",
@@ -48,6 +48,6 @@
     "phone":"803-945-3388",
     "accountId":4,
     "type":"P",
-    "fines":0
+    "fines":0.0
   }
 ]}

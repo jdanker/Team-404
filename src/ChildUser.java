@@ -7,7 +7,6 @@ public class ChildUser extends User {
      * This method is the default constructor for the User Abstract Class
      *
      * @param firstName   is the String value for the User object's first name.
-     * @param middleName  is the String value for the User object's middle name.
      * @param lastName    is the String value for the User object's last name.
      * @param email       is the String value for the User object's email.
      * @param address     is the String value for the User object's address.

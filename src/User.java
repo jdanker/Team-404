@@ -9,7 +9,7 @@ public class User {
     protected long accountID;
     protected String phoneNumber;
     protected int checkoutLimit;
-    protected long fines;
+    protected double fines;
     protected String accountType;
     protected String firstName;
     protected String lastName;
@@ -39,7 +39,7 @@ public class User {
             String phoneNumber,
             long accountId,
             String type,
-            long fines,
+            double fines,
             ArrayList<Media> checkedOut) {
         this.ID = ID;
         this.firstName = firstName;

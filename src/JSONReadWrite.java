@@ -182,9 +182,9 @@ public class JSONReadWrite {
 				String phone = (String) userJSON.get("phone");
 				long accountId = (long) userJSON.get("accountId");
 				String type = (String) userJSON.get("type");
-				long fines = (long) userJSON.get("fines");
+				double fines = (double) userJSON.get("fines");
 
-				users.add(new User(id, firstName, lastName, address, email, phone, accountId, type, fines, new ArrayList<Media>()));
+				users.add(new User(id, firstName, lastName, address, email, phone, accountId, type, 0.0, new ArrayList<Media>()));
 			}
 
 			return users;
