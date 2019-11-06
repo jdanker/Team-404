@@ -317,6 +317,13 @@ public class JSONReadWrite {
 		}
 	}
 
+    /**
+     * Adds given user to JSON file
+     *
+     * @param user to be added to users list
+     *
+     * See addBook for breakdown of what is happening in method
+     */
 	public static void addUser(User user) {
 		try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
@@ -465,6 +472,13 @@ public class JSONReadWrite {
 		}
 	}
 
+    /**
+     * Remove any magazines with matching titles
+     * @param firstName - First name of user you would like to remove
+     * @param lastName - Last name of user you would like to remove
+     *
+     * See deleteBook method for details on how it functions
+     */
 	public static void deleteUser(String firstName, String lastName) {
 		try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
