@@ -118,22 +118,19 @@ public class Driver {
         return null;
     }
 
+//    TODO: @thel Flesh out menu tree for the driver
     private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
             case "L":
                 runAdminMenu((AdminUser) selectedUser);
                 break;
 
-            case "T":
+            case "P":
                 // Run Teacher Menu sequence.
                 break;
 
-            case "C":
-                // Run Child User Menu sequence.
-                break;
-
             default:
-                // Run standard user sequence.
+                System.exit(0);
         }
     }
 
