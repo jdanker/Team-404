@@ -64,7 +64,7 @@ public class Driver {
                     System.out.println("Please enter your phone number");
                     int phoneNumber = userInput.nextInt();
 
-                    StandardUser nUser = new StandardUser(firstName, lastName, email, address, DOB, phoneNumber);
+                    StandardUser nUser = new StandardUser(firstName, lastName, address, email, phoneNumber, DOB, phoneNumber);
                     UserInterface.printDashes();
                     break;
 
