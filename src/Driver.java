@@ -71,9 +71,9 @@ public class Driver {
                     String phoneNumber = userInput.nextLine();
 
                     // Develops an unique user ID from the number of user in the system.
-                    ArrayList<User> users = JSONReadWrite.loadUsers();
-                    assert users != null;
-                    int idNum = users.size() +1;
+                    //ArrayList<User> users = JSONReadWrite.loadUsers();
+                    //assert users != null;
+                    int idNum = (int) (Math.random()*10);
 
                     StandardUser newUser = new StandardUser(idNum, firstName, lastName, email, address, phoneNumber,idNum,"S", 0);
                     JSONReadWrite.addUser(newUser);
@@ -118,10 +118,10 @@ public class Driver {
         return null;
     }
 
-    private static void runUserMenu(String type) {
+    private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
             case "L":
-                // Run Admin Menu sequence.
+                runAdminMenu((AdminUser) selectedUser);
                 break;
 
             case "T":
@@ -134,6 +134,54 @@ public class Driver {
 
             default:
                 // Run standard user sequence.
+        }
+    }
+
+    private static void runAdminMenu(AdminUser user) {
+        Scanner input = new Scanner(System.in);
+        boolean loggedOut = false;
+
+        while (!loggedOut) {
+            UserInterface.printAdminMenu();
+            int userinput = input.nextInt();
+
+            switch (userinput) {
+                case 1:
+                    System.out.println("Please specify the ID of the new media:");
+                    long id = input.nextLong();
+
+                    System.out.println("Please specify the title of the new media:");
+                    String title = input.next();
+
+                    System.out.println("Please specify the year of the new media:");
+                    long year = input.nextLong();
+
+                    System.out.println("Please specify the genre of the new media:");
+                    String genre = input.next();
+
+                    System.out.println("Please specify if the new media is a new release:");
+                    boolean newRelease = input.nextBoolean();
+
+                    System.out.println("Please specify how many copies of the new media is available:");
+                    long amount = input.nextLong();
+
+                    //Media newMedia = new book(id, title, year, genre, newRelease, amount);
+
+                    //user.AddItem();
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    System.out.println(user.firstName + " is now logged out.");
+                    loggedOut = true;
+                    UserInterface.printDashes();
+                    break;
+
+                default:
+                    System.out.println("Invalid Input. Please select a valid value: (1 - 3)");
+            }
         }
     }
 }
