@@ -36,15 +36,6 @@ public class AdminUser extends User {
   }
 
   /**
-   * Adds user to database, if they need to be added manually.
-   * @param user that should be added
-   */
-  public void AddUser(User user) {
-    JSONReadWrite.addUser(user);
-    System.out.println(user + " has been added to the library");
-  }
-
-  /**
    * This method adds a fee to a user's account
    * @param fee is the fee to be applied to the account
    * @param user is the User object the fee will be added to.

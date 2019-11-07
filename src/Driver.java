@@ -50,23 +50,25 @@ public class Driver {
 
                 case 2:
                     // TODO: somehow make the new user get stored in a JSON file
+
+                    userInput.nextLine();
                     System.out.println("Please enter your first name:");
-                    String firstName = userInput.next();
+                    String firstName = userInput.nextLine();
 
                     System.out.println("Please enter your last name:");
-                    String lastName = userInput.next();
+                    String lastName = userInput.nextLine();
 
                     System.out.println("Please enter your email address:");
-                    String email = userInput.next();
+                    String email = userInput.nextLine();
 
                     System.out.println("Please enter your local address:");
-                    String address = userInput.next();
+                    String address = userInput.nextLine();
 
                     System.out.println("Please enter your Date of Birth:");
-                    String DOB = userInput.next();
+                    String DOB = userInput.nextLine();
 
                     System.out.println("Please enter your phone number:");
-                    String phoneNumber = userInput.next();
+                    String phoneNumber = userInput.nextLine();
 
                     // Develops an unique user ID from the number of user in the system.
                     ArrayList<User> users = JSONReadWrite.loadUsers();
@@ -74,6 +76,7 @@ public class Driver {
                     int idNum = users.size() +1;
 
                     StandardUser newUser = new StandardUser(idNum, firstName, lastName, email, address, phoneNumber,idNum,"S", 0);
+                    JSONReadWrite.addUser(newUser);
                     System.out.println("New User, " + newUser.firstName + ", has been created.");
                     System.out.println("Your password is " + newUser.lastName + ".");
                     UserInterface.printDashes();

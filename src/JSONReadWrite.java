@@ -347,7 +347,7 @@ public class JSONReadWrite {
 			jsonData.put("users", usersJson);
 
 
-			try (FileWriter file = new FileWriter(DVD_FILE_NAME)) {
+			try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
 				file.write(jsonData.toJSONString());
 				file.flush();
 			} catch (Exception e) {
@@ -499,7 +499,7 @@ public class JSONReadWrite {
 			jsonData.clear();
 			jsonData.put("users", usersArray);
 
-			try (FileWriter file = new FileWriter(DVD_FILE_NAME)) {
+			try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
 				file.write(jsonData.toJSONString());
 				file.flush();
 			}
