@@ -13,18 +13,36 @@ public class AdminUser extends User {
    * @param phoneNumber is the int value for the User object's phone number.
    */
 
-  public AdminUser(String firstName, String lastName, String email, String address, String DOB, int phoneNumber) {
-    super(firstName, lastName, email, address, DOB, phoneNumber);
+  public AdminUser(Long ID, String firstName, String lastName, String email, String address, String DOB, String phoneNumber, Long accountID) {
+    super(ID, firstName, lastName, address, email, phoneNumber, accountID, "L", 0); //L type is for librarian
 
   }
 
   /**
-  * This method adds a piece of media to the library
+  * These methods adds a piece of media to the library
   * @param media is the object to be added
   */
-  public void AddItem(Media media) {
-    this.mediaList.add(media);
+  public void AddMagazine(magazine media) {
+    JSONReadWrite.addMagazine(media);
     System.out.println(media + " has been added to the library");
+  }
+
+  public void AddBook(book book) {
+    JSONReadWrite.addBook(book);
+    System.out.println(book + " has been added to the library");
+  }
+
+  public void AddItem(DVD dvd) {
+    JSONReadWrite.addDVD(dvd);
+  }
+
+  /**
+   * Adds user to database, if they need to be added manually.
+   * @param user that should be added
+   */
+  public void AddUser(User user) {
+    JSONReadWrite.addUser(user);
+    System.out.println(user + " has been added to the library");
   }
 
   /**
@@ -33,7 +51,7 @@ public class AdminUser extends User {
    * @param user is the User object the fee will be added to.
    */
   public void AddFees(int fee, User user) {
-    user.balance += fee;
+    user.fines += fee;
     System.out.println("A fee of "+ fee + " has been added");
   }
 }
