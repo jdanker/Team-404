@@ -14,8 +14,7 @@ public class AdminUser extends User {
    */
 
   public AdminUser(Long ID, String firstName, String lastName, String email, String address, String DOB, String phoneNumber, Long accountID) {
-    super(ID, firstName, lastName, address, email, phoneNumber, accountID, "L", 0); //L type is for librarian
-
+    super(ID, firstName, lastName, address, email, phoneNumber, accountID, "L", 0, new ArrayList<Media>()); //L type is for librarian
   }
 
   /**
