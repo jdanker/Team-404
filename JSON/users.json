@@ -1,1 +1,9 @@
-{"users":[{"firstName":"Robbie","lastName":"White","accountId":1,"address":"123 Park Avenue","phone":"803-565-4433","fines":0.0,"id":1,"type":"L","email":"rwhite@gmail.com"},{"firstName":"Amy","lastName":"Smith","accountId":2,"address":"765 Jefferson Rd.","phone":"803-242-4427","fines":3.4,"id":2,"type":"L","email":"asmith@gmail.com"},{"firstName":"Jim","lastName":"Hudson","accountId":3,"address":"834 Birch Ln.","phone":"803-555-4545","fines":7.2,"id":3,"type":"P","email":"jhudson@yahoo.com"},{"firstName":"Bryan","lastName":"Wilson","accountId":4,"address":"342 Fairview Pl.","phone":"803-232-7788","fines":0.0,"id":4,"type":"P","email":"bwilson@gmail.com"},{"firstName":"Jed","lastName":"Wilson","accountId":4,"address":"342 Fairview Pl.","phone":"803-945-3388","fines":0.0,"id":5,"type":"P","email":"jwilson@gmail.com"},{"firstName":"Logan","lastName":"Williams","accountId":6,"address":"WilliamsLoganm@gmail.com","phone":"803-569-8412","fines":0.0,"id":6,"type":"L","email":"1013 Price Avenue"}]}
+{"users":[
+  {"firstName":"Robbie","lastName":"White","accountId":1,"address":"123 Park Avenue","phone":"803-565-4433","fines":0.0,"id":1,"type":"L","email":"rwhite@gmail.com"},
+  {"firstName":"Amy","lastName":"Smith","accountId":2,"address":"765 Jefferson Rd.","phone":"803-242-4427","fines":3.4,"id":2,"type":"L","email":"asmith@gmail.com"},
+  {"firstName":"Jim","lastName":"Hudson","accountId":3,"address":"834 Birch Ln.","phone":"803-555-4545","fines":7.2,"id":3,"type":"P","email":"jhudson@yahoo.com"},
+  {"firstName":"Bryan","lastName":"Wilson","accountId":4,"address":"342 Fairview Pl.","phone":"803-232-7788","fines":0.0,"id":4,"type":"P","email":"bwilson@gmail.com"},
+  {"firstName":"Jed","lastName":"Wilson","accountId":4,"address":"342 Fairview Pl.","phone":"803-945-3388","fines":0.0,"id":5,"type":"P","email":"jwilson@gmail.com"},
+  {"firstName":"Logan","lastName":"Williams","accountId":6,"address":"WilliamsLoganm@gmail.com","phone":"803-569-8412","fines":0.0,"id":6,"type":"L","email":"1013 Price Avenue"}
+  ]
+}

@@ -38,6 +38,7 @@ public class Driver {
                     isLoggedIn = selectedUser != null;
 
                     String type = selectedUser.getAccountType();
+
                     runUserMenu(selectedUser, type);
 
                     // Runs the appropriate menu according to account type or tell the user the login is invalid.
@@ -120,7 +121,7 @@ public class Driver {
                     switch(payFines) {
                         case 1:
                             System.out.println("Pay your fees heathen");
-                            user.payFees();
+                            //user.payFees();
 
                         case 2:
                             System.out.println("Here at team 404 library we don't accept criminals");
@@ -275,6 +276,8 @@ public class Driver {
                     break;
 
                 case 2:
+                    ArrayList<Media> media = JSONReadWrite.getMediaList();
+                    System.out.println(media.toString());
                     break;
 
                 case 3:

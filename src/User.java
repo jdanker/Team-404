@@ -40,7 +40,8 @@ public class User {
             long accountId,
             String type,
             double fines,
-            ArrayList<Media> checkedOut) {
+            ArrayList<Media> checkedOut
+    ) {
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
