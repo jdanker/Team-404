@@ -18,6 +18,8 @@ public abstract class Media {
 
     public void setDueDate(String dueDate)  {this.dueDate = dueDate;}
 
+    public String getDueDate()  {return this.dueDate;}
+
     public String getGenre() {
         return genre;
     }
