@@ -39,6 +39,9 @@ public class Driver {
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
+                    String type = selectedUser.getAccountType();
+                    runUserMenu(selectedUser, type);
+
                     // Runs the appropriate menu according to account type or tell the user the login is invalid.
                     if (!isLoggedIn) {
                         System.out.println("The username or password entered is invalid.");
@@ -122,15 +125,103 @@ public class Driver {
     private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
             case "L":
+                // Run Admin Menu
                 runAdminMenu((AdminUser) selectedUser);
                 break;
 
             case "P":
                 // Run Teacher Menu sequence.
+                runTeacherMenu((TeacherUser) selectedUser);
                 break;
-
+            //TODO add cases for StandardUser and ChildUser
             default:
                 System.exit(0);
+        }
+    }
+
+    private static void runStandardMenu(User user)   {
+        Scanner input = new Scanner(System.in);
+        boolean loggedOut = false;
+
+        while (!loggedOut)  {
+            UserInterface.printStandardMenu();
+            int userInput = input.nextInt();
+
+            switch (userInput)  {
+                case 1:
+                    System.out.println("Media List: ");
+                case 2:
+                    System.out.println("Holds: ");
+                case 3:
+                    System.out.println("Account Balance: " + user.getFines());
+                case 4:
+                    System.out.println("Enter the name of the media to check out: ");
+                case 5:
+                    System.out.println("Enter the name of the media to be checked in: ");
+                case 6:
+                    System.out.println("Register Child ");
+                case 7:
+                    System.out.println("Logging out...");
+                default:
+                    System.out.println("Invalid Input. Please select a valid value");
+
+
+            }
+        }
+    }
+    private static void runChildMenu(User user)   {
+        Scanner input = new Scanner(System.in);
+        boolean loggedOut = false;
+
+        while (!loggedOut)  {
+            UserInterface.printChildMenu();
+            int userInput = input.nextInt();
+
+            switch (userInput)  {
+                case 1:
+                    System.out.println("Media List: ");
+                case 2:
+                    System.out.println("Holds: ");
+                case 3:
+                    System.out.println("Enter the media to be checked in");
+                case 4:
+                    System.out.println("Logging out...");
+                default:
+                    System.out.println("Invalid Input. Please select a valid value");
+            }
+        }
+    }
+
+    private static void runTeacherMenu(TeacherUser user)    {
+        Scanner input = new Scanner(System.in);
+        boolean loggedOut = false;
+
+        while (!loggedOut)  {
+            UserInterface.printTeacherMenu();
+            int userInput = input.nextInt();
+            String title;
+
+            switch(userInput)   {
+                case 1:
+                    System.out.println("Media List: ");
+
+                case 2:
+                    System.out.println("Holds: ");
+
+                case 3:
+                    System.out.println("Account Balance:" );
+
+                case 4:
+                    System.out.println("Enter the name of the media to be checked out: ");
+                case 5:
+                    System.out.println("Enter the name of the media to be checked in:");
+                case 6:
+                    System.out.println("Logging out...");
+                    loggedOut = true;
+                default:
+                    System.out.println("Invalid Input. Please select a valid value");
+
+            }
         }
     }
 

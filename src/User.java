@@ -115,4 +115,12 @@ public class User {
      * @param media is the Media object whose time will be reset.
      */
     public void renewMedia (Media media) {}
+
+    public String getAccountType()  {
+        return this.accountType;
+    }
+
+    public double getFines() {
+        return this.fines;
+    }
 }
