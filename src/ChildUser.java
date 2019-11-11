@@ -15,7 +15,7 @@ public class ChildUser extends User {
      */
     public ChildUser(long ID, String firstName, String lastName, String email, String address,
                      long DOB, String phoneNumber, long accountID, String type, long fines) {
-        super(ID, firstName, lastName, address, email, phoneNumber, accountID, type, fines, new ArrayList<Media>());
+        super(ID, firstName, lastName, address, email, phoneNumber, accountID, "C", fines, new ArrayList<Media>());
         this.balance = (long) 0.0;
     }
 
