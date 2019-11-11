@@ -94,6 +94,7 @@ public class User {
         else{
             System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked out");
         }
+
     }
         public void checkIn (Media media){
             System.out.println("Enter new book title to be checked in");
