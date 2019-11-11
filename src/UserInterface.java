@@ -45,6 +45,9 @@ public class UserInterface {
         System.out.println("7) Log Out");
     }
 
+    /**
+     * This method prints the Child User Menu
+     */
     public static void printChildMenu() {
         System.out.println("1) View Media List");
         System.out.println("2) Check out Media");
@@ -52,6 +55,9 @@ public class UserInterface {
         System.out.println("4) Log Out");
     }
 
+    /**
+     * This method prints the Teacher User Menu
+     */
     public static void printTeacherMenu() {
         System.out.println("1) View Media List");
         System.out.println("2) View Media Hold Status");

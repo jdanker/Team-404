@@ -18,7 +18,7 @@ public class StandardUser extends User {
      * @param accountID is the int value for the User object's account ID number.
      */
     public StandardUser(long ID, String firstName, String lastName, String address, String email, String phoneNumber, long accountID, String type, long fines) {
-        super(ID, firstName, lastName, address, email, phoneNumber, accountID, type, fines, new ArrayList<Media>());
+        super(ID, firstName, lastName, address, email, phoneNumber, accountID, "S", fines, new ArrayList<Media>());
         this.holds = new ArrayList<>();
         this.children = new ArrayList<>();
     }

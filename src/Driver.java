@@ -185,6 +185,7 @@ public class Driver {
             }
         }
     }
+
     private static void runChildMenu(User user)   {
         Scanner input = new Scanner(System.in);
         boolean loggedOut = false;
