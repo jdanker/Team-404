@@ -38,21 +38,12 @@ public class Driver {
                     isLoggedIn = selectedUser != null;
 
                     if(selectedUser.getAccountType() == "S") {
-                        StandardUser newUser = (StandardUser) new User(selectedUser.getID(), selectedUser.getFirstName(),
-                                selectedUser.getLastName(), selectedUser.getAddress(),
-                                selectedUser.getEmail(), selectedUser.getPhoneNumber(),
-                                selectedUser.getAccountID(), selectedUser.getAccountType(), selectedUser.getFines(),
-                                selectedUser.getCheckedOut());
-                        if (selectedUser.fines > 0) {
+                        if (selectedUser.getFines()>0) {
                             System.out.println("You have unpaid fines! No books can be checked out until you pay your fines!");
                             int payFines = userInput.nextInt();
                             switch (payFines) {
                                 case 1:
                                     System.out.println("Pay your fees heathen");
-                                    newUser.payFees();
-
-                                case 2:
-                                    System.out.println("Here at team 404 library we don't accept criminals");
                                     System.exit(0);
 
                             }

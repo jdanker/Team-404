@@ -21,6 +21,7 @@ public class StandardUser extends User {
         super(ID, firstName, lastName, address, email, phoneNumber, accountID, "S", fines, new ArrayList<Media>());
         this.holds = new ArrayList<>();
         this.children = new ArrayList<>();
+
     }
 
     /**
@@ -66,5 +67,12 @@ public class StandardUser extends User {
         }
 
         return (int)this.fines - amount;
+    }
+
+    public boolean hasFines()   {
+        if (this.fines > 0)
+            return true;
+        else
+            return false;
     }
 }
