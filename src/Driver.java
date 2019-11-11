@@ -124,12 +124,15 @@ public class Driver {
 //    TODO: @thel Flesh out menu tree for the driver
     private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
-            case "L":
+            case "L": //Admin user "L" for librarian
                 // Run Admin Menu
                 runAdminMenu((AdminUser) selectedUser);
                 break;
-
-            case "P":
+            case "T": //Teacher user "T"
+                runTeacherMenu((TeacherUser) selectedUser);
+            case "C": //ChildUser "C"
+                runChildMenu((ChildUser) selectedUser);
+            case "P": //StandardUser "P"
                 // Run Teacher Menu sequence.
                 runTeacherMenu((TeacherUser) selectedUser);
                 break;
@@ -164,8 +167,6 @@ public class Driver {
                     System.out.println("Logging out...");
                 default:
                     System.out.println("Invalid Input. Please select a valid value");
-
-
             }
         }
     }
