@@ -3,6 +3,7 @@ public abstract class Media {
     public String title;
     public long year;
     public String genre;
+    public String dueDate = "";
     public boolean newRelease;
     public long numCopies;
 
@@ -14,6 +15,8 @@ public abstract class Media {
     public void setID(long ID) {
         this.ID = ID;
     }
+
+    public void setDueDate(String dueDate)  {this.dueDate = dueDate;}
 
     public String getGenre() {
         return genre;
