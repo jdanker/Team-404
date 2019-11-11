@@ -34,7 +34,7 @@ public class Driver {
                     String pw = userInput.next();
 
                     // Checks if user is in the database.
-                    // TODO: Implement Login method.
+
 
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
@@ -136,7 +136,6 @@ public class Driver {
                 // Run Teacher Menu sequence.
                 runTeacherMenu((TeacherUser) selectedUser);
                 break;
-            //TODO add cases for StandardUser and ChildUser
             default:
                 System.exit(0);
         }

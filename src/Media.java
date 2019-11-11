@@ -12,20 +12,14 @@ public abstract class Media {
         return ID;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    public void setDueDate(String dueDate)  {this.dueDate = dueDate;}
-
     public String getDueDate()  {return this.dueDate;}
 
     public String getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public long getYear() {
+        return year;
     }
 
     public String getTitle() {
@@ -36,8 +30,14 @@ public abstract class Media {
         return numCopies;
     }
 
-    public long getYear() {
-        return year;
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+
+    public void setDueDate(String dueDate)  {this.dueDate = dueDate;}
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public void setNewRelease(boolean newRelease) {
