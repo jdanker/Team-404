@@ -37,8 +37,31 @@ public class Driver {
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
+                    if(selectedUser.getAccountType() == "S") {
+                        StandardUser newUser = (StandardUser) new User(selectedUser.getID(), selectedUser.getFirstName(),
+                                selectedUser.getLastName(), selectedUser.getAddress(),
+                                selectedUser.getEmail(), selectedUser.getPhoneNumber(),
+                                selectedUser.getAccountID(), selectedUser.getAccountType(), selectedUser.getFines(),
+                                selectedUser.getCheckedOut());
+                        if (selectedUser.fines > 0) {
+                            System.out.println("You have unpaid fines! No books can be checked out until you pay your fines!");
+                            int payFines = userInput.nextInt();
+                            switch (payFines) {
+                                case 1:
+                                    System.out.println("Pay your fees heathen");
+                                    newUser.payFees();
+
+                                case 2:
+                                    System.out.println("Here at team 404 library we don't accept criminals");
+                                    System.exit(0);
+
+                            }
+
+                        }
+                    }
                     String type = selectedUser.getAccountType();
                     runUserMenu(selectedUser, type);
+
 
                     // Runs the appropriate menu according to account type or tell the user the login is invalid.
                     if (!isLoggedIn) {
@@ -114,21 +137,6 @@ public class Driver {
         // Checks if the user name and password matches existing users.
         for (User user : users) {
             if (user.firstName.equals(userName) && user.lastName.equals(password)) {
-                if(user.fines>0){
-                    System.out.println("You have unpaid fines! No books can be checked out until you pay your fines!");
-                    int payFines = userInput.nextInt();
-                    switch(payFines) {
-                        case 1:
-                            System.out.println("Pay your fees heathen");
-                            user.payFees();
-
-                        case 2:
-                            System.out.println("Here at team 404 library we don't accept criminals");
-                            System.exit(0);
-
-                    }
-
-                }
                 return user;
             }
         }
