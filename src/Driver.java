@@ -33,9 +33,7 @@ public class Driver {
                     System.out.print("Please enter your password: ");
                     String pw = userInput.next();
 
-                    // Checks if user is in the database.
-                    // TODO: Implement Login method.
-
+                    // Checks if user is in the data
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
@@ -105,6 +103,8 @@ public class Driver {
      * @return an User object.
      */
     private static User login(String userName, String password) {
+        Scanner userInput = new Scanner(System.in);
+
         // Loads User ArrayList into a local ArrayList
         ArrayList<User> users = JSONReadWrite.loadUsers();
 
@@ -114,6 +114,21 @@ public class Driver {
         // Checks if the user name and password matches existing users.
         for (User user : users) {
             if (user.firstName.equals(userName) && user.lastName.equals(password)) {
+                if(user.fines>0){
+                    System.out.println("You have unpaid fines! No books can be checked out until you pay your fines!");
+                    int payFines = userInput.nextInt();
+                    switch(payFines) {
+                        case 1:
+                            System.out.println("Pay your fees heathen");
+                            user.payFees();
+
+                        case 2:
+                            System.out.println("Here at team 404 library we don't accept criminals");
+                            System.exit(0);
+
+                    }
+
+                }
                 return user;
             }
         }
