@@ -37,23 +37,12 @@ public class Driver {
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
-                    if(selectedUser.getAccountType() == "S") {
+                    if(selectedUser.getAccountType() == "P") {
                         if (selectedUser.getFines()>0) {
                             System.out.println("You have unpaid fines! No books can be checked out until you pay your fines!");
-                            int payFines = userInput.nextInt();
-                            switch (payFines) {
-                                case 1:
-                                    System.out.println("Pay your fees heathen");
-                                    System.exit(0);
-
-                            }
-
+                            System.exit(0);
                         }
                     }
-                    String type = selectedUser.getAccountType();
-                    runUserMenu(selectedUser, type);
-
-
                     // Runs the appropriate menu according to account type or tell the user the login is invalid.
                     if (!isLoggedIn) {
                         System.out.println("The username or password entered is invalid.");
@@ -61,6 +50,12 @@ public class Driver {
                         System.out.println("You are now logged in. Let's run something.");
                     }
                     UserInterface.printDashes();
+
+                    String type = selectedUser.getAccountType();
+                    runUserMenu(selectedUser, type);
+
+
+
                     break;
 
                 case 2:
@@ -116,12 +111,9 @@ public class Driver {
      * @return an User object.
      */
     private static User login(String userName, String password) {
-        Scanner userInput = new Scanner(System.in);
         return getUser(userName, password);
     }
 
-
-//    TODO: @thel Flesh out menu tree for the driver
     private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
             case "L": //Admin user "L" for librarian
@@ -133,8 +125,8 @@ public class Driver {
             case "C": //ChildUser "C"
                 runChildMenu(selectedUser);
             case "P": //StandardUser "P"
-                // Run Teacher Menu sequence.
-                runTeacherMenu((TeacherUser) selectedUser);
+                // Run Standard user Menu sequence.
+                runStandardMenu(selectedUser);
                 break;
             default:
                 System.exit(0);
@@ -143,10 +135,6 @@ public class Driver {
 
     private static void runStandardMenu(User user)   {
         Scanner input = new Scanner(System.in);
-        boolean loggedOut = false;
-        String inString;
-
-        while (!loggedOut)  {
             UserInterface.printStandardMenu();
             int userInput = input.nextInt();
             int index;
@@ -160,19 +148,18 @@ public class Driver {
                     System.out.println("2. Magazines");
                     System.out.println("3. DVDs");
 
-                    userInput = input.nextInt();
-                    switch (userInput)  {
+                    int mediaType = input.nextInt();
+                    switch (mediaType){
                         case 1:
+                            System.out.println("point");
                             Books.printBooks();
-                            break;
+
                         case 2:
                             Magazines.printMagazines();
                             break;
                         case 3:
                             DVDs.printDVDs();
                             break;
-                        case 4:
-                            return;
                         default:
                             System.out.println("Invalid input. Enter a number between 1-3");
                     }
@@ -186,25 +173,32 @@ public class Driver {
                 case 4:
                     System.out.println("Enter the type of the media to be checked in:");
                     type = input.nextLine();
-                    System.out.println("Enter the title of the media to be checked out: ");
-                    title = input.nextLine();
-                    switch(type)    {
+                    switch(type){
                         case "Book":
+                            System.out.println("Enter the title of the media to be checked out: ");
+                            title = input.nextLine();
                             index = Books.searchBooks(title);
                             media = Books.bookList.get(index);
                             user.checkoutMedia(media);
                             break;
                         case "DVD":
+                            System.out.println("Enter the title of the media to be checked out: ");
+                            title = input.nextLine();
                             index = DVDs.searchDVDs(title);
                             media = DVDs.dvdsList.get(index);
-                            user.checkoutMedia(media);break;
+                            user.checkoutMedia(media);
+                            break;
                         case "Magazine":
+                            System.out.println("Enter the title of the media to be checked out: ");
+                            title = input.nextLine();
                             index = Magazines.searchMagazines(title);
                             media = Magazines.magazineList.get(index);
                             user.checkoutMedia(media);
+                            break;
                         default:
                             System.out.println("Please enter a valid type of media");
                     }
+                    break;
                 case 5:
                     System.out.println("Enter the name of the media to be checked in: ");
                     break;
@@ -213,13 +207,13 @@ public class Driver {
                     break;
                 case 7:
                     System.out.println("Logging out...");
-                    loggedOut = true;
-                    return;
+                    System.exit(0);
+
                 default:
                     System.out.println("Invalid Input. Please select a valid value");
             }
         }
-    }
+
 
     private static void runChildMenu(User user)   {
         Scanner input = new Scanner(System.in);
