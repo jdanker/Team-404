@@ -64,7 +64,6 @@ public class Driver {
                     break;
 
                 case 2:
-                    // TODO: somehow make the new user get stored in a JSON file
 
                     userInput.nextLine();
                     System.out.println("Please enter your first name:");
@@ -159,26 +158,77 @@ public class Driver {
     private static void runStandardMenu(User user)   {
         Scanner input = new Scanner(System.in);
         boolean loggedOut = false;
+        String inString;
 
         while (!loggedOut)  {
             UserInterface.printStandardMenu();
             int userInput = input.nextInt();
+            int index;
+            Media media;
+            String title, type;
 
             switch (userInput)  {
                 case 1:
-                    System.out.println("Media List: ");
+                    System.out.println("Enter the number of the type of media you would like to see:");
+                    System.out.println("1. Books");
+                    System.out.println("2. Magazines");
+                    System.out.println("3. DVDs");
+
+                    userInput = input.nextInt();
+                    switch (userInput)  {
+                        case 1:
+                            Books.printBooks();
+                            break;
+                        case 2:
+                            Magazines.printMagazines();
+                            break;
+                        case 3:
+                            DVDs.printDVDs();
+                            break;
+                        case 4:
+                            return;
+                        default:
+                            System.out.println("Invalid input. Enter a number between 1-3");
+                    }
+                    break;
                 case 2:
                     System.out.println("Holds: ");
+                    break;
                 case 3:
                     System.out.println("Account Balance: " + user.getFines());
+                    break;
                 case 4:
-                    System.out.println("Enter the name of the media to check out: ");
+                    System.out.println("Enter the type of the media to be checked in:");
+                    type = input.nextLine();
+                    System.out.println("Enter the title of the media to be checked out: ");
+                    title = input.nextLine();
+                    switch(type)    {
+                        case "Book":
+                            index = Books.searchBooks(title);
+                            media = Books.bookList.get(index);
+                            user.checkoutMedia(media);
+                            break;
+                        case "DVD":
+                            index = DVDs.searchDVDs(title);
+                            media = DVDs.dvdsList.get(index);
+                            user.checkoutMedia(media);break;
+                        case "Magazine":
+                            index = Magazines.searchMagazines(title);
+                            media = Magazines.magazineList.get(index);
+                            user.checkoutMedia(media);
+                        default:
+                            System.out.println("Please enter a valid type of media");
+                    }
                 case 5:
                     System.out.println("Enter the name of the media to be checked in: ");
+                    break;
                 case 6:
                     System.out.println("Register Child ");
+                    break;
                 case 7:
                     System.out.println("Logging out...");
+                    loggedOut = true;
+                    return;
                 default:
                     System.out.println("Invalid Input. Please select a valid value");
             }
@@ -188,6 +238,7 @@ public class Driver {
     private static void runChildMenu(User user)   {
         Scanner input = new Scanner(System.in);
         boolean loggedOut = false;
+        String inString;
 
         while (!loggedOut)  {
             UserInterface.printChildMenu();
@@ -195,13 +246,39 @@ public class Driver {
 
             switch (userInput)  {
                 case 1:
-                    System.out.println("Media List: ");
+                    System.out.println("Enter the number of the type of media you would like to see:");
+                    System.out.println("1. Books");
+                    System.out.println("2. Magazines");
+                    System.out.println("3. DVDs");
+                    System.out.println("4. Exit to menu");
+
+                    userInput = input.nextInt();
+                    switch (userInput)  {
+                        case 1:
+                            Books.printBooks();
+                            break;
+                        case 2:
+                            Magazines.printMagazines();
+                            break;
+                        case 3:
+                            DVDs.printDVDs();
+                            break;
+                        case 4:
+                            return;
+                        default:
+                            System.out.println("Invalid input. Enter a number between 1-3");
+                    }
+                    break;
                 case 2:
                     System.out.println("Holds: ");
+                    break;
                 case 3:
                     System.out.println("Enter the media to be checked in");
+                    break;
                 case 4:
                     System.out.println("Logging out...");
+                    loggedOut = true;
+                    return;
                 default:
                     System.out.println("Invalid Input. Please select a valid value");
             }
@@ -211,29 +288,77 @@ public class Driver {
     private static void runTeacherMenu(TeacherUser user)    {
         Scanner input = new Scanner(System.in);
         boolean loggedOut = false;
+        String inString;
 
         while (!loggedOut)  {
             UserInterface.printTeacherMenu();
             int userInput = input.nextInt();
-            String title;
+            int index;
+            Media media;
+            String title, type;
 
             switch(userInput)   {
                 case 1:
-                    System.out.println("Media List: ");
+                    System.out.println("Enter the number of the type of media you would like to see:");
+                    System.out.println("1. Books");
+                    System.out.println("2. Magazines");
+                    System.out.println("3. DVDs");
+                    System.out.println("4. Exit to menu");
 
+                    userInput = input.nextInt();
+                    switch (userInput)  {
+                        case 1:
+                            Books.printBooks();
+                            break;
+                        case 2:
+                            Magazines.printMagazines();
+                            break;
+                        case 3:
+                            DVDs.printDVDs();
+                            break;
+                        case 4:
+                            return;
+                        default:
+                            System.out.println("Invalid input. Enter a number between 1-3");
+                    }
+                    break;
                 case 2:
                     System.out.println("Holds: ");
-
+                    break;
                 case 3:
                     System.out.println("Account Balance:" );
-
+                    break;
                 case 4:
-                    System.out.println("Enter the name of the media to be checked out: ");
+                    System.out.println("Enter the type of the media to be checked in:");
+                    type = input.nextLine();
+                    System.out.println("Enter the title of the media to be checked out: ");
+                    title = input.nextLine();
+                    switch(type)    {
+                        case "Book":
+                            index = Books.searchBooks(title);
+                            media = Books.bookList.get(index);
+                            user.checkoutMedia(media);
+                            break;
+                        case "DVD":
+                            index = DVDs.searchDVDs(title);
+                            media = DVDs.dvdsList.get(index);
+                            user.checkoutMedia(media);break;
+                        case "Magazine":
+                            index = Magazines.searchMagazines(title);
+                            media = Magazines.magazineList.get(index);
+                            user.checkoutMedia(media);
+                        default:
+                            System.out.println("Please enter a valid type of media");
+                    }
+
+                    break;
                 case 5:
                     System.out.println("Enter the name of the media to be checked in:");
+                    break;
                 case 6:
                     System.out.println("Logging out...");
                     loggedOut = true;
+                    return;
                 default:
                     System.out.println("Invalid Input. Please select a valid value");
 

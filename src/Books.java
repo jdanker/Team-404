@@ -19,4 +19,30 @@ public class Books {
 	public ArrayList<book> getBooks() {
 		return bookList;
 	}
+
+    /**
+     * prints the array list of the books
+     */
+	public static void printBooks()  {
+	    for (int i = 0; i < bookList.size(); ++i)   {
+	        System.out.println(bookList.get(i).toString());
+        }
+	}
+
+    /**
+     * Method to find the index of a books in the list of available books
+     * @param input
+     * @return int val for index of books
+     */
+	public static int searchBooks(String input)    {
+	    int retVal = 0;
+	    for (int i = 0; i < bookList.size(); ++i)   {
+	        if (bookList.get(i).title.equalsIgnoreCase(input))  {
+                retVal = i;
+            } else  {
+	            System.out.println("Book not found");
+            }
+        }
+	    return retVal;
+    }
 }

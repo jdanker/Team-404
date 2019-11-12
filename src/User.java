@@ -53,70 +53,6 @@ public class User {
         this.checkedOut = checkedOut;
     }
 
-    /**
-     * This method returns the user to the "Welcome" screen.
-     */
-    public void logout() {}
-
-    /**
-     * This method takes in a title (Subject to change) and searches the database for corresponding media
-     * and stores the results in an ArrayList.
-     * @param title is the String value to be searched.
-     * @return an ArrayList of Media objects.
-     */
-    public ArrayList<Media> Search(String title) {
-        return null;
-    }
-
-    /**
-     * This method adds a Media object to the User's Media List. It decrements the number of
-     * available copies.
-     * @param media is the Media object to be added.
-     */
-    public void checkoutMedia (Media media) {
-
-        /**
-         * This method removes the Media object from the User's Media List and increments the number
-         * of available copies.
-         * @param media is the Media object to be returned.
-         */
-
-        System.out.println("Enter new book title to be checked out");
-        String bookCheckout = input.next();
-        if(Books.bookList.contains(bookCheckout)){
-            long num = media.getNumCopies();
-            num -=1;
-            media.setNumCopies(num);
-            checkedOut.add(media);
-
-            System.out.println("------------"+bookCheckout + "has been successfully checked out!--------------");
-        }
-        else{
-            System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked out");
-        }
-
-    }
-        public void checkIn (Media media){
-            System.out.println("Enter new book title to be checked in");
-            String bookCheckout = input.next();
-            if(Books.bookList.contains(bookCheckout)){
-                long num = media.getNumCopies();
-                num +=1;
-                media.setNumCopies(num);
-                checkedOut.remove(media);
-
-                System.out.println("------------"+bookCheckout + "has been successfully checked in! --------------");
-            }
-            else{
-                System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked in");
-            }
-        }
-    /**
-     * This method resets the checkout time for the media object.
-     * @param media is the Media object whose time will be reset.
-     */
-    public void renewMedia (Media media) {}
-
     public String getAccountType()  {
         return this.accountType;
     }
@@ -220,4 +156,116 @@ public class User {
     public void setInput(Scanner input) {
         this.input = input;
     }
+    /**
+     * This method returns the user to the "Welcome" screen.
+     */
+    public void logout() {}
+
+    /**
+     * This method takes in a title (Subject to change) and searches the database for corresponding media
+     * and stores the results in an ArrayList.
+     * @param title is the String value to be searched.
+     * @return an ArrayList of Media objects.
+     */
+    public ArrayList<Media> Search(String title) {
+        return null;
+    }
+
+    /**
+     * This method adds a Media object to the User's Media List. It decrements the number of
+     * available copies.
+     * @param media is the Media object to be added.
+     */
+    public void checkoutMedia (Media media) {
+
+        /**
+         * This method removes the Media object from the User's Media List and increments the number
+         * of available copies.
+         * @param media is the Media object to be returned.
+         */
+
+        System.out.println("Enter the type of media to be checked out:");
+        String in = input.nextLine();
+
+        switch(in)  {
+            case "Book":
+                System.out.println("Enter new book title to be checked out");
+                String bookCheckout = input.next();
+                if(Books.bookList.contains(bookCheckout)){
+                    long num = media.getNumCopies();
+                    num -= 1;
+                    media.setNumCopies(num);
+                    checkedOut.add(media);
+
+                    System.out.println("------------"+bookCheckout + "has been successfully checked out!--------------");
+                }   else    {
+                    System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked out");
+                }
+                break;
+
+            case "DVD":
+                System.out.println("Enter the title of the DVD to be checked out:");
+                String dvdCheckout = input.nextLine();
+                if (DVDs.dvdsList.contains(dvdCheckout))    {
+                    long num = media.getNumCopies();
+                    num -= 1;
+                    media.setNumCopies(num);
+                    checkedOut.add(media);
+                    System.out.println("------------"+dvdCheckout + "has been successfully checked out!--------------");
+                }  else  {
+                    System.out.println(dvdCheckout + " is not in the library. Please enter a different book to be checked out");
+                }
+                break;
+
+            case "Magazine":
+                System.out.println("Enter the title of the magazine to be checked out:");
+                String magazineCheckout = input.nextLine();
+                if (Magazines.magazineList.contains(magazineCheckout))  {
+                    long num = media.getNumCopies();
+                    num -= 1;
+                    media.setNumCopies(num);
+                    checkedOut.add(media);
+                    System.out.println("------------"+magazineCheckout + "has been successfully checked out!--------------");
+                }  else  {
+                    System.out.println(magazineCheckout + " is not in the library. Please enter a different book to be checked out");
+                }
+                break;
+        }
+
+//        System.out.println("Enter new book title to be checked out");
+//        String bookCheckout = input.next();
+//        if(Books.bookList.contains(bookCheckout)){
+//            long num = media.getNumCopies();
+//            num -=1;
+//            media.setNumCopies(num);
+//            checkedOut.add(media);
+//
+//            System.out.println("------------"+bookCheckout + "has been successfully checked out!--------------");
+//        } else  {
+//            System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked out");
+//        }
+
+    }
+
+        public void checkIn (Media media){
+            System.out.println("Enter new book title to be checked in");
+            String bookCheckout = input.next();
+            if(Books.bookList.contains(bookCheckout)){
+                long num = media.getNumCopies();
+                num +=1;
+                media.setNumCopies(num);
+                checkedOut.remove(media);
+
+                System.out.println("------------"+bookCheckout + "has been successfully checked in! --------------");
+            }
+            else{
+                System.out.println(bookCheckout + " is not currently checked out. Please enter a different book to be checked in");
+            }
+        }
+    /**
+     * This method resets the checkout time for the media object.
+     * @param media is the Media object whose time will be reset.
+     */
+    public void renewMedia (Media media) {}
+
 }
