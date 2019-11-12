@@ -117,21 +117,7 @@ public class Driver {
      */
     private static User login(String userName, String password) {
         Scanner userInput = new Scanner(System.in);
-
-        // Loads User ArrayList into a local ArrayList
-        ArrayList<User> users = JSONReadWrite.loadUsers();
-
-        // Makes sure the user list is not empty.
-        assert users != null;
-
-        // Checks if the user name and password matches existing users.
-        for (User user : users) {
-            if (user.firstName.equals(userName) && user.lastName.equals(password)) {
-                return user;
-            }
-        }
-        // If user was not found, it returns null.
-        return null;
+        return getUser(userName, password);
     }
 
 
@@ -400,6 +386,18 @@ public class Driver {
                     break;
 
                 case 2:
+                    // adds fines to a user's current fine balance
+                    System.out.println("Enter the first name of the person you would like to apply fees to: ");
+                    String fName = input.next();
+                    System.out.println("Enter the last name of the person you would like to apply fees to: ");
+                    String lName = input.nextLine();
+
+                    User user1 = getUser(fName, lName);
+                    System.out.println("Enter the amount of fees to apply: ");
+                    double feeAdd = input.nextInt();
+                    double curFee = user1.getFines() + feeAdd;
+                    user1.setFines(curFee);
+                    System.out.println("Fees have been added. " + user1.firstName + "'s" + " have been updated to "+user1.getFines());
                     break;
 
                 case 3:
@@ -412,5 +410,20 @@ public class Driver {
                     System.out.println("Invalid Input. Please select a valid value: (1 - 3)");
             }
         }
+    }
+//    helper method to search a user by name
+    public static User getUser(String fName, String lName){
+        ArrayList<User> users = JSONReadWrite.loadUsers();
+
+        // Makes sure the user list is not empty.
+        assert users != null;
+
+        // Checks if the user name and password matches existing users.
+        for (User user : users) {
+            if (user.firstName.equals(fName) && user.lastName.equals(lName)) {
+                return user;
+            }
+        }
+        return null;
     }
 }

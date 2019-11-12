@@ -268,10 +268,5 @@ public class User {
      */
     public void renewMedia (Media media) {}
 
-    public static User transform(User user){
-        user.setAccountType("Admin");
-
-        return user;
-    }
 
 }
