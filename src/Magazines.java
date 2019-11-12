@@ -1,14 +1,21 @@
 import java.util.ArrayList;
 
 public class Magazines {
+
+    /**
+     * attributes
+     */
     private static Magazines magazines = null;
     public static ArrayList<magazine> magazineList = new ArrayList<magazine>();
-
     private Magazines()
     {
         magazineList = JSONReadWrite.loadMagazines();
     }
 
+    /**
+     * makes sure one instance of magazines is being used at a time
+     * @return an instance of magazines
+     */
     public static Magazines getInstance()
     {
         if(magazines == null)

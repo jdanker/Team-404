@@ -2,14 +2,20 @@ import java.util.ArrayList;
 
 public class DVDs {
 
+    /**
+     * attributes
+     */
     private static DVDs dvds = null;
     public static ArrayList<DVD> dvdsList = new ArrayList<DVD>();
-
     private DVDs()
     {
         dvdsList = JSONReadWrite.loadDvds();
     }
 
+    /**
+     * makes sure one instance of dvds is being used at a time
+     * @return an instance of dvds
+     */
     public static DVDs getInstance()
     {
         if(dvds == null)

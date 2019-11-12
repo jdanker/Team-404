@@ -1,21 +1,27 @@
 import java.util.ArrayList;
 
 public class Books {
+
+	/**
+	 * attributes
+	 */
 	private static Books books = null;
 	public static ArrayList<book> bookList = new ArrayList<book>();
-	
 	private Books() {
 		bookList = JSONReadWrite.loadBooks();
 	}
-	
+
+	/**
+	 * Makes sure one instanc eof books is being used at a time
+	 * @return an insance of books
+	 */
 	public static Books getInstance() {
 		if(books == null) {
 			books = new Books();
 		}
-		
 		return books;
 	}
-	
+
 	public ArrayList<book> getBooks() {
 		return bookList;
 	}
