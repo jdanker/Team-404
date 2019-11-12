@@ -134,17 +134,18 @@ public class Driver {
         return null;
     }
 
+
 //    TODO: @thel Flesh out menu tree for the driver
     private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
             case "L": //Admin user "L" for librarian
                 // Run Admin Menu
-                runAdminMenu((AdminUser) selectedUser);
+                runAdminMenu(selectedUser);
                 break;
             case "T": //Teacher user "T"
-                runTeacherMenu((TeacherUser) selectedUser);
+                runTeacherMenu(selectedUser);
             case "C": //ChildUser "C"
-                runChildMenu((ChildUser) selectedUser);
+                runChildMenu(selectedUser);
             case "P": //StandardUser "P"
                 // Run Teacher Menu sequence.
                 runTeacherMenu((TeacherUser) selectedUser);
@@ -284,7 +285,7 @@ public class Driver {
         }
     }
 
-    private static void runTeacherMenu(TeacherUser user)    {
+    private static void runTeacherMenu(User user)    {
         Scanner input = new Scanner(System.in);
         boolean loggedOut = false;
         String inString;
@@ -365,7 +366,7 @@ public class Driver {
         }
     }
 
-    private static void runAdminMenu(AdminUser user) {
+    private static void runAdminMenu(User user) {
         Scanner input = new Scanner(System.in);
         boolean loggedOut = false;
 
