@@ -54,9 +54,9 @@ public class Driver {
                     String type = selectedUser.getAccountType();
                     runUserMenu(selectedUser, type);
 
-
-
                     break;
+
+
 
                 case 2:
 
@@ -140,7 +140,6 @@ public class Driver {
             int index;
             Media media;
             String title, type;
-
             switch (userInput)  {
                 case 1:
                     System.out.println("Enter the number of the type of media you would like to see:");
@@ -153,7 +152,7 @@ public class Driver {
                         case 1:
                             System.out.println("point");
                             Books.printBooks();
-
+                            break;
                         case 2:
                             Magazines.printMagazines();
                             break;
@@ -171,15 +170,17 @@ public class Driver {
                     System.out.println("Account Balance: " + user.getFines());
                     break;
                 case 4:
-                    System.out.println("Enter the type of the media to be checked in:");
-                    type = input.nextLine();
-                    switch(type){
+                    System.out.println("Enter the type of the media to be checked out:");
+                    String tester = input.next();
+                    switch (tester) {
                         case "Book":
                             System.out.println("Enter the title of the media to be checked out: ");
                             title = input.nextLine();
                             index = Books.searchBooks(title);
                             media = Books.bookList.get(index);
                             user.checkoutMedia(media);
+                            System.out.println("Your book has been successfully checked out!");
+                            UserInterface.printDashes();
                             break;
                         case "DVD":
                             System.out.println("Enter the title of the media to be checked out: ");
@@ -187,6 +188,8 @@ public class Driver {
                             index = DVDs.searchDVDs(title);
                             media = DVDs.dvdsList.get(index);
                             user.checkoutMedia(media);
+                            System.out.println("Your DVD has been successfully checked out!");
+                            UserInterface.printDashes();
                             break;
                         case "Magazine":
                             System.out.println("Enter the title of the media to be checked out: ");
@@ -194,6 +197,8 @@ public class Driver {
                             index = Magazines.searchMagazines(title);
                             media = Magazines.magazineList.get(index);
                             user.checkoutMedia(media);
+                            System.out.println("Your magazine has been successfully checked out!");
+                            UserInterface.printDashes();
                             break;
                         default:
                             System.out.println("Please enter a valid type of media");
