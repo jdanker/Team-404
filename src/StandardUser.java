@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class StandardUser extends User {
 
     // Class Properties
-    private int balance;
     private ArrayList<Media> holds;
     private ArrayList<User> children;
 
@@ -18,7 +17,7 @@ public class StandardUser extends User {
      * @param accountID is the int value for the User object's account ID number.
      */
     public StandardUser(long ID, String firstName, String lastName, String address, String email, String phoneNumber, long accountID, String type, double fines) {
-        super(ID, firstName, lastName, address, email, phoneNumber, accountID, "S", fines, new ArrayList<Media>());
+        super(ID, firstName, lastName, address, email, phoneNumber, accountID, "S", fines, new ArrayList<>());
         this.holds = new ArrayList<>();
         this.children = new ArrayList<>();
 
@@ -67,11 +66,5 @@ public class StandardUser extends User {
         }
 
         return (int)this.fines - amount;
-    }
-
-    public boolean hasFines()   {
-        if (this.fines > 0)
-            return true;
-        return false;
     }
 }

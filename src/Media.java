@@ -15,14 +15,6 @@ public abstract class Media {
 
     public String getDueDate()  {return this.dueDate;}
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public long getYear() {
-        return year;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -37,23 +29,11 @@ public abstract class Media {
 
     public void setDueDate(String dueDate)  {this.dueDate = dueDate;}
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public void setNewRelease(boolean newRelease) {
-        this.newRelease = newRelease;
-    }
-
     public void setNumCopies(long numCopies) {
         this.numCopies = numCopies;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setYear(long year) {
-        this.year = year;
     }
 }
