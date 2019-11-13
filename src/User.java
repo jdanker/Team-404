@@ -162,16 +162,6 @@ public class User {
     public void logout() {}
 
     /**
-     * This method takes in a title (Subject to change) and searches the database for corresponding media
-     * and stores the results in an ArrayList.
-     * @param title is the String value to be searched.
-     * @return an ArrayList of Media objects.
-     */
-    public ArrayList<Media> Search(String title) {
-        return null;
-    }
-
-    /**
      * This method adds a Media object to the User's Media List. It decrements the number of
      * available copies.
      * @param media is the Media object to be added.
@@ -190,7 +180,7 @@ public class User {
         switch(in)  {
             case "Book":
                 System.out.println("Enter new book title to be checked out");
-                String bookCheckout = input.next();
+                String bookCheckout = input.nextLine();
                 if(Books.bookList.contains(bookCheckout)){
                     long num = media.getNumCopies();
                     num -= 1;

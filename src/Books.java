@@ -42,11 +42,10 @@ public class Books {
      */
 	public static int searchBooks(String input)    {
 	    int retVal = 0;
-	    for (int i = 0; i < bookList.size(); ++i)   {
+	    for (int i = 0; i < bookList.size(); i++)
+	    {
 	        if (bookList.get(i).title.equalsIgnoreCase(input))  {
                 retVal = i;
-            } else  {
-	            System.out.println("Book not found");
             }
         }
 	    return retVal;
