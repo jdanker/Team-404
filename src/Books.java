@@ -6,7 +6,7 @@ public class Books {
 	 * attributes
 	 */
 	private static Books books = null;
-	public static ArrayList<book> bookList = new ArrayList<book>();
+	public static ArrayList<book> bookList = JSONReadWrite.loadBooks();
 	private Books() {
 		bookList = JSONReadWrite.loadBooks();
 	}

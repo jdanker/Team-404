@@ -6,7 +6,7 @@ public class Magazines {
      * attributes
      */
     private static Magazines magazines = null;
-    public static ArrayList<magazine> magazineList = new ArrayList<magazine>();
+    public static ArrayList<magazine> magazineList = JSONReadWrite.loadMagazines();
     private Magazines()
     {
         magazineList = JSONReadWrite.loadMagazines();

@@ -6,7 +6,7 @@ public class DVDs {
      * attributes
      */
     private static DVDs dvds = null;
-    public static ArrayList<DVD> dvdsList = new ArrayList<DVD>();
+    public static ArrayList<DVD> dvdsList = JSONReadWrite.loadDvds();
     private DVDs()
     {
         dvdsList = JSONReadWrite.loadDvds();

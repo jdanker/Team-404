@@ -54,9 +54,9 @@ public class Driver {
                     String type = selectedUser.getAccountType();
                     runUserMenu(selectedUser, type);
 
+
+
                     break;
-
-
 
                 case 2:
 
@@ -124,6 +124,7 @@ public class Driver {
                 runTeacherMenu(selectedUser);
             case "C": //ChildUser "C"
                 runChildMenu(selectedUser);
+                break;
             case "P": //StandardUser "P"
                 // Run Standard user Menu sequence.
                 runStandardMenu(selectedUser);
@@ -136,11 +137,13 @@ public class Driver {
     private static void runStandardMenu(User user)   {
         Scanner input = new Scanner(System.in);
             UserInterface.printStandardMenu();
-            int userInput = input.nextInt();
+             String userInput = input.nextLine();
+             int parsedInput = Integer.parseInt(userInput);
             int index;
             Media media;
             String title, type;
-            switch (userInput)  {
+
+            switch (parsedInput)  {
                 case 1:
                     System.out.println("Enter the number of the type of media you would like to see:");
                     System.out.println("1. Books");
@@ -150,9 +153,9 @@ public class Driver {
                     int mediaType = input.nextInt();
                     switch (mediaType){
                         case 1:
-                            System.out.println("point");
                             Books.printBooks();
                             break;
+
                         case 2:
                             Magazines.printMagazines();
                             break;
@@ -171,16 +174,14 @@ public class Driver {
                     break;
                 case 4:
                     System.out.println("Enter the type of the media to be checked out:");
-                    String tester = input.next();
-                    switch (tester) {
+                    type = input.nextLine();
+                    switch(type){
                         case "Book":
                             System.out.println("Enter the title of the media to be checked out: ");
                             title = input.nextLine();
                             index = Books.searchBooks(title);
                             media = Books.bookList.get(index);
                             user.checkoutMedia(media);
-                            System.out.println("Your book has been successfully checked out!");
-                            UserInterface.printDashes();
                             break;
                         case "DVD":
                             System.out.println("Enter the title of the media to be checked out: ");
@@ -188,8 +189,6 @@ public class Driver {
                             index = DVDs.searchDVDs(title);
                             media = DVDs.dvdsList.get(index);
                             user.checkoutMedia(media);
-                            System.out.println("Your DVD has been successfully checked out!");
-                            UserInterface.printDashes();
                             break;
                         case "Magazine":
                             System.out.println("Enter the title of the media to be checked out: ");
@@ -197,11 +196,10 @@ public class Driver {
                             index = Magazines.searchMagazines(title);
                             media = Magazines.magazineList.get(index);
                             user.checkoutMedia(media);
-                            System.out.println("Your magazine has been successfully checked out!");
-                            UserInterface.printDashes();
                             break;
                         default:
                             System.out.println("Please enter a valid type of media");
+                            break;
                     }
                     break;
                 case 5:
@@ -213,7 +211,7 @@ public class Driver {
                 case 7:
                     System.out.println("Logging out...");
                     System.exit(0);
-
+                    break;
                 default:
                     System.out.println("Invalid Input. Please select a valid value");
             }
@@ -277,12 +275,13 @@ public class Driver {
 
         while (!loggedOut)  {
             UserInterface.printTeacherMenu();
-            int userInput = input.nextInt();
+            String userInput = input.nextLine();
+            int parsedInput = Integer.parseInt(userInput);
             int index;
             Media media;
             String title, type;
 
-            switch(userInput)   {
+            switch(parsedInput)   {
                 case 1:
                     System.out.println("Enter the number of the type of media you would like to see:");
                     System.out.println("1. Books");
@@ -290,8 +289,9 @@ public class Driver {
                     System.out.println("3. DVDs");
                     System.out.println("4. Exit to menu");
 
-                    userInput = input.nextInt();
-                    switch (userInput)  {
+                    userInput = input.nextLine();
+                    parsedInput = Integer.parseInt(userInput);
+                    switch (parsedInput)  {
                         case 1:
                             Books.printBooks();
                             break;
@@ -357,32 +357,76 @@ public class Driver {
 
         while (!loggedOut) {
             UserInterface.printAdminMenu();
-            int userinput = input.nextInt();
+            String userInput = input.nextLine();
+            int parsedInput = Integer.parseInt(userInput);
 
-            switch (userinput) {
+            switch (parsedInput) {
                 case 1:
+                    System.out.println("Please input the type of media. \n1. Book \n2. DVD \n3.Magazine");
+                    int mediaInput = Integer.parseInt(input.nextLine());
+
                     System.out.println("Please specify the ID of the new media:");
-                    long id = input.nextLong();
+                    long id = Long.parseLong(input.nextLine());
 
                     System.out.println("Please specify the title of the new media:");
-                    String title = input.next();
+                    String title = input.nextLine();
 
                     System.out.println("Please specify the year of the new media:");
-                    long year = input.nextLong();
+                    long year = Long.parseLong(input.nextLine());
 
                     System.out.println("Please specify the genre of the new media:");
-                    String genre = input.next();
+                    String genre = input.nextLine();
 
                     System.out.println("Please specify if the new media is a new release:");
                     boolean newRelease = input.nextBoolean();
 
                     System.out.println("Please specify how many copies of the new media is available:");
-                    long amount = input.nextLong();
+                    long amount = Long.parseLong(input.nextLine());
 
-                    //Media newMedia = new book(id, title, year, genre, newRelease, amount);
+                    switch (mediaInput) {
+                        case 1:
 
-                    //user.AddItem();
-                    break;
+                            System.out.println("Please specify the ISBN of the new book:");
+                            String ISBN = input.nextLine();
+
+                            System.out.println("Please specify the publisher of the new book:");
+                            String publisher = input.nextLine();
+
+                            System.out.println("Please specify the author of the new book:");
+                            String author = input.nextLine();
+
+                            book newbook = new book(id, title, year, genre, ISBN, publisher, author, amount, newRelease);
+
+                            AdminUser.AddBook(newbook);
+                            break;
+
+                        case 2:
+                            System.out.println("Please specify the publisher of the new magazine:");
+                            publisher = input.nextLine();
+
+                            System.out.println("Please specify the volume of the new magazine:");
+                            long volume = Long.parseLong(input.nextLine());
+
+                            System.out.println("Please specify the issue of the new magazine:");
+                            long issue = Long.parseLong(input.nextLine());
+
+
+
+                            magazine newMag = new magazine(id, title, year, genre, publisher, volume, issue, amount, newRelease);
+                            AdminUser.AddMagazine(newMag);
+                            break;
+
+                        case 3:
+                            System.out.println("Please input the actors on one line, separated by commas");
+                            String actors = input.nextLine();
+
+                            System.out.println("Please input the director of the DVD");
+                            String director = input.nextLine();
+
+                            DVD newDvd = new DVD(id, title, year, genre, actors, director, amount, newRelease);
+                            AdminUser.AddDVD(newDvd);
+                    }
+
 
                 case 2:
                     // adds fines to a user's current fine balance
