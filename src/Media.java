@@ -6,6 +6,7 @@ public abstract class Media {
     public String dueDate = "";
     public boolean newRelease;
     public long numCopies;
+    public String reviews;
 
 
     public long getID() {

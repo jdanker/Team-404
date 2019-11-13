@@ -2,7 +2,7 @@ public class DVD extends Media {
     String actors;
     String director;
 
-    public DVD(long id, String title, long year, String genre, String actors, String director, long numCopies, boolean newArrival)
+    public DVD(long id, String title, long year, String genre, String actors, String director, long numCopies, boolean newArrival, String reviews)
     {
         this.ID = id;
         this.title = title;
@@ -12,6 +12,7 @@ public class DVD extends Media {
         this.director = director;
         this.numCopies = numCopies;
         this.newRelease = newArrival;
+        this.reviews = reviews;
     }
 
     @Override

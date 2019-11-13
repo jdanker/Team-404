@@ -171,7 +171,7 @@ public class Driver {
                     System.out.println("Holds: ");
                     break;
                 case 3:
-                    System.out.println("Account Balance: " + user.getFines());
+                    System.out.println("Account Balance: " + user.fines);
                     break;
                 case 4:
                     System.out.println("Enter the type of the media to be checked out:");
@@ -207,7 +207,60 @@ public class Driver {
                     System.out.println("Enter the name of the media to be checked in: ");
                     break;
                 case 6:
-                    System.out.println("Register Child ");
+                    System.out.println("Please enter the type of media you would like to read the reviews of.");
+                    type = input.nextLine();
+                    System.out.println("Please input the name.");
+                    String name = input.nextLine();
+                switch(type) {
+                    case "Book":
+                        System.out.println("Retrieving reviews...");
+                        index = Books.searchBooks(name);
+                        book reviewBook = Books.bookList.get(index);
+                        System.out.println(reviewBook.reviews);
+
+                        System.out.println("Would you like to leave a review?");
+                            if(input.nextLine().equalsIgnoreCase("yes"))
+                            {
+                                System.out.println("Please enter your review: ");
+                                String newReview = input.nextLine();
+                                reviewBook.reviews += (", " + newReview);
+                                JSONReadWrite.deleteBook(name);
+                                JSONReadWrite.addBook(reviewBook);
+                            }
+                        break;
+                    case "DVD":
+                        System.out.println("Retrieving reviews...");
+                        index = DVDs.searchDVDs(name);
+                        DVD reviewDVD = DVDs.dvdsList.get(index);
+                        System.out.println(reviewDVD.reviews);
+
+                        System.out.println("Would you like to leave a review?");
+                        if(input.nextLine().equalsIgnoreCase("yes"))
+                        {
+                            System.out.println("Please enter your review: ");
+                            String newReview = input.nextLine();
+                            reviewDVD.reviews += (", " + newReview);
+                            JSONReadWrite.deleteDVD(name);
+                            JSONReadWrite.addDVD(reviewDVD);
+                        }
+                        break;
+                    case "Magazine":
+                        System.out.println("Retrieving reviews...");
+                        index = Magazines.searchMagazines(name);
+                        magazine reviewMag = Magazines.magazineList.get(index);
+                        System.out.println(reviewMag.reviews);
+
+                        System.out.println("Would you like to leave a review?");
+                        if(input.nextLine().equalsIgnoreCase("yes"))
+                        {
+                            System.out.println("Please enter your review: ");
+                            String newReview = input.nextLine();
+                            reviewMag.reviews += (", " + newReview);
+                            JSONReadWrite.deleteMagazine(name);
+                            JSONReadWrite.addMagazine(reviewMag);
+                        }
+                        break;
+                }
                     break;
                 case 7:
                     System.out.println("Logging out...");
@@ -397,7 +450,7 @@ public class Driver {
                             System.out.println("Please specify the author of the new book:");
                             String author = input.nextLine();
 
-                            book newbook = new book(id, title, year, genre, ISBN, publisher, author, amount, newRelease);
+                            book newbook = new book(id, title, year, genre, ISBN, publisher, author, amount, newRelease, "");
 
                             AdminUser.AddBook(newbook);
                             break;
@@ -414,7 +467,7 @@ public class Driver {
 
 
 
-                            magazine newMag = new magazine(id, title, year, genre, publisher, volume, issue, amount, newRelease);
+                            magazine newMag = new magazine(id, title, year, genre, publisher, volume, issue, amount, newRelease, "");
                             AdminUser.AddMagazine(newMag);
                             break;
 
@@ -425,24 +478,26 @@ public class Driver {
                             System.out.println("Please input the director of the DVD");
                             String director = input.nextLine();
 
-                            DVD newDvd = new DVD(id, title, year, genre, actors, director, amount, newRelease);
+                            DVD newDvd = new DVD(id, title, year, genre, actors, director, amount, newRelease, "");
                             AdminUser.AddDVD(newDvd);
                             break;
                     }
-
+                break;
 
                 case 2:
                     // adds fines to a user's current fine balance
                     System.out.println("Enter the first name of the person you would like to apply fees to: ");
-                    String fName = input.next();
+                    String fName = input.nextLine();
                     System.out.println("Enter the last name of the person you would like to apply fees to: ");
                     String lName = input.nextLine();
 
                     User user1 = getUser(fName, lName);
                     System.out.println("Enter the amount of fees to apply: ");
-                    double feeAdd = input.nextInt();
+                    double feeAdd = Double.parseDouble(input.nextLine());
                     double curFee = user1.getFines() + feeAdd;
                     user1.setFines(curFee);
+                    JSONReadWrite.deleteUser(fName, lName);
+                    JSONReadWrite.addUser(user1);
                     System.out.println("Fees have been added. " + user1.firstName + "'s" + " have been updated to "+user1.getFines());
                     break;
 
