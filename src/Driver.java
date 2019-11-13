@@ -178,21 +178,21 @@ public class Driver {
                     type = input.nextLine();
                     switch(type){
                         case "Book":
-                            System.out.println("Enter the title of the media to be checked out: ");
+                            System.out.println("Enter the title of the Book to be checked out: ");
                             title = input.nextLine();
                             index = Books.searchBooks(title);
                             media = Books.bookList.get(index);
                             user.checkoutMedia(media);
                             break;
                         case "DVD":
-                            System.out.println("Enter the title of the media to be checked out: ");
+                            System.out.println("Enter the title of the DVD to be checked out: ");
                             title = input.nextLine();
                             index = DVDs.searchDVDs(title);
                             media = DVDs.dvdsList.get(index);
                             user.checkoutMedia(media);
                             break;
                         case "Magazine":
-                            System.out.println("Enter the title of the media to be checked out: ");
+                            System.out.println("Enter the title of the Magazine to be checked out: ");
                             title = input.nextLine();
                             index = Magazines.searchMagazines(title);
                             media = Magazines.magazineList.get(index);

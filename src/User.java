@@ -82,12 +82,6 @@ public class User {
      */
     public void checkoutMedia(Media media) {
 
-        /**
-         * This method removes the Media object from the User's Media List and increments the number
-         * of available copies.
-         * @param media is the Media object to be returned.
-         */
-
         System.out.println("Enter the type of media to be checked out:");
         String in = input.nextLine();
 
@@ -103,7 +97,7 @@ public class User {
 
                     System.out.println("------------" + bookCheckout + "has been successfully checked out!--------------");
                 } else {
-                    System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked out");
+                    System.out.println(bookCheckout + " is not in the library.");
                 }
                 break;
 
@@ -117,7 +111,7 @@ public class User {
                     checkedOut.add(media);
                     System.out.println("------------" + dvdCheckout + "has been successfully checked out!--------------");
                 } else {
-                    System.out.println(dvdCheckout + " is not in the library. Please enter a different book to be checked out");
+                    System.out.println(dvdCheckout + " is not in the library.");
                 }
                 break;
 
@@ -131,7 +125,7 @@ public class User {
                     checkedOut.add(media);
                     System.out.println("------------" + magazineCheckout + "has been successfully checked out!--------------");
                 } else {
-                    System.out.println(magazineCheckout + " is not in the library. Please enter a different book to be checked out");
+                    System.out.println(magazineCheckout + " is not in the library.");
                 }
                 break;
         }
