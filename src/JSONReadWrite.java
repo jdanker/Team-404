@@ -44,9 +44,10 @@ public class JSONReadWrite {
 				String author = (String) bookJSON.get("author");
 				long numCopies = (long) bookJSON.get("numCopies");
 				boolean newArrival = (boolean) bookJSON.get("newArrival");
+				String reviews = bookJSON.get("reviews").toString();
 
 				//Add new book using previous variables
-				books.add(new book(id, title, year, genre, ISBN, publisher, author, numCopies, newArrival));
+				books.add(new book(id, title, year, genre, ISBN, publisher, author, numCopies, newArrival, reviews));
 			}
 			//return arraylist
 			return books;
@@ -81,8 +82,10 @@ public class JSONReadWrite {
 				String director = (String) dvdJSON.get("director");
 				long numCopies = (long) dvdJSON.get("numCopies");
 				boolean newArrival = (boolean) dvdJSON.get("newArrival");
+				String reviews = (String) dvdJSON.get("reviews").toString();
 
-				dvds.add(new DVD(id, title, year, genre, actors, director, numCopies, newArrival));
+
+				dvds.add(new DVD(id, title, year, genre, actors, director, numCopies, newArrival, reviews));
 			}
 
 			return dvds;
@@ -118,8 +121,10 @@ public class JSONReadWrite {
 				long issue = (long) magazineJSON.get("issue");
 				long numCopies = (long) magazineJSON.get("numCopies");
 				boolean newArrival = (boolean) magazineJSON.get("newArrival");
+				String reviews = (String) magazineJSON.get("reviews").toString();
 
-				mags.add(new magazine(id, title, year, genre, publisher, volume, issue, numCopies, newArrival));
+
+				mags.add(new magazine(id, title, year, genre, publisher, volume, issue, numCopies, newArrival, reviews));
 			}
 			return mags;
 
@@ -219,10 +224,11 @@ public class JSONReadWrite {
 			newBookDetails.put("author", book.author);
 			newBookDetails.put("numCopies", book.numCopies);
 			newBookDetails.put("newArrival", book.newRelease);
+			newBookDetails.put("reviews", book.reviews);
 
 			booksJSON.add(newBookDetails); //Adds new book to the array
 
-			jsonData.put("books", booksJSON); //Addst he array to the JSON object for proper formatting
+			jsonData.put("books", booksJSON); //Adds the array to the JSON object for proper formatting
 
 			try (FileWriter file = new FileWriter(BOOK_FILE_NAME)) {
 				file.write(jsonData.toJSONString()); //Writes JSON object to string and adds it to file
@@ -259,6 +265,7 @@ public class JSONReadWrite {
 			newDVDdetails.put("director", dvd.director);
 			newDVDdetails.put("numCopies", dvd.numCopies);
 			newDVDdetails.put("newArrival", dvd.newRelease);
+			newDVDdetails.put("reviews", dvd.reviews);
 
 			dvdsJson.add(newDVDdetails);
 			jsonData.put("dvds", dvdsJson);
@@ -301,6 +308,7 @@ public class JSONReadWrite {
 			newMagDetails.put("issue", magazine.issue);
 			newMagDetails.put("numCopies", magazine.numCopies);
 			newMagDetails.put("newArrival", magazine.newRelease);
+			newMagDetails.put("reviews", magazine.reviews);
 
 			magazinesJson.add(newMagDetails);
 			jsonData.put("magazines", magazinesJson);
@@ -390,7 +398,6 @@ public class JSONReadWrite {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("Any book with title: " + title + " has been removed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -428,7 +435,6 @@ public class JSONReadWrite {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("Any DVD with title: " + title + " has been removed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -466,14 +472,13 @@ public class JSONReadWrite {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("Any magazine with title: " + title + " has been removed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
     /**
-     * Remove any magazines with matching titles
+     * Remove any Users with matching names
      * @param firstName - First name of user you would like to remove
      * @param lastName - Last name of user you would like to remove
      *
@@ -506,7 +511,6 @@ public class JSONReadWrite {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("Any user with name: " + firstName + " " + lastName + " has been removed.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

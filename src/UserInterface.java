@@ -42,7 +42,7 @@ public class UserInterface {
         System.out.println("3) View Account Balance");
         System.out.println("4) Check out Media");
         System.out.println("5) Check In Media");
-        System.out.println("6) Register Child");
+        System.out.println("6) Read the Reviews");
         System.out.println("7) Log Out");
     }
 

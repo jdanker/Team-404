@@ -5,7 +5,7 @@ public class magazine extends Media {
     long volume;
 
 
-    public magazine(long id, String title, long year, String genre, String publisher, long volume, long issue, long numCopies, boolean newArrival)
+    public magazine(long id, String title, long year, String genre, String publisher, long volume, long issue, long numCopies, boolean newArrival, String reviews)
     {
         this.ID = id;
         this.title = title;
@@ -16,6 +16,7 @@ public class magazine extends Media {
         this.volume = volume;
         this.numCopies = numCopies;
         this.newRelease = newArrival;
+        this.reviews = reviews;
     }
 
     @Override
