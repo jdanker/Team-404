@@ -29,7 +29,7 @@ public class Books {
     /**
      * prints the array list of the books
      */
-	public static void printBooks()  {
+	static void printBooks()  {
 	    for (int i = 0; i < bookList.size(); ++i)   {
 	        System.out.println(bookList.get(i).toString());
         }

@@ -34,7 +34,8 @@ public class Magazines {
      * prints the array list of the magazines
      */
     public static void printMagazines()    {
-        for (int i = 0; i < magazineList.size(); ++i)   {
+
+        for(int i = 0; i < magazineList.size(); ++i)   {
             System.out.println(magazineList.get(i).toString());
         }
     }
