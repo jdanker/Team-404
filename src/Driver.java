@@ -175,7 +175,7 @@ public class Driver {
                     break;
                 case 4:
                     System.out.println("Enter the type of the media to be checked out:");
-                    type = input.next();
+                    type = input.nextLine();
                     switch(type){
                         case "Book":
                             System.out.println("Enter the title of the media to be checked out: ");
