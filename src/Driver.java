@@ -164,6 +164,7 @@ public class Driver {
                             break;
                         default:
                             System.out.println("Invalid input. Enter a number between 1-3");
+                            break;
                     }
                     break;
                 case 2:
@@ -214,6 +215,7 @@ public class Driver {
                     break;
                 default:
                     System.out.println("Invalid Input. Please select a valid value");
+                    break;
             }
         }
 
@@ -378,7 +380,7 @@ public class Driver {
                     String genre = input.nextLine();
 
                     System.out.println("Please specify if the new media is a new release:");
-                    boolean newRelease = input.nextBoolean();
+                    boolean newRelease = Boolean.parseBoolean(input.nextLine());
 
                     System.out.println("Please specify how many copies of the new media is available:");
                     long amount = Long.parseLong(input.nextLine());
@@ -425,6 +427,7 @@ public class Driver {
 
                             DVD newDvd = new DVD(id, title, year, genre, actors, director, amount, newRelease);
                             AdminUser.AddDVD(newDvd);
+                            break;
                     }
 
 
@@ -451,6 +454,7 @@ public class Driver {
 
                 default:
                     System.out.println("Invalid Input. Please select a valid value: (1 - 3)");
+                    break;
             }
         }
     }
