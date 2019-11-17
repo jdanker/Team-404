@@ -39,7 +39,8 @@ public class User {
             long accountId,
             String type,
             double fines,
-            ArrayList<Media> checkedOut) {
+            ArrayList<Media> checkedOut
+    ) {
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,56 +82,57 @@ public class User {
      */
     public void checkoutMedia(Media media) {
 
-        /**
-         * This method removes the Media object from the User's Media List and increments the number
-         * of available copies.
-         * @param media is the Media object to be returned.
-         */
-
-        System.out.println("Enter the type of media to be checked out:");
-        String in = input.nextLine();
+        String in = media.getClass().toGenericString();
 
         switch (in) {
             case "Book":
-                System.out.println("Enter new book title to be checked out");
-                String bookCheckout = input.nextLine();
-                if (Books.searchBooks(bookCheckout)>0) {
+                int bookIndex = Books.searchBooks(media.title);
+                if (bookIndex > 0) {
+                    book checkoutMe = Books.bookList.get(bookIndex);
                     long num = media.getNumCopies();
                     num -= 1;
                     media.setNumCopies(num);
+                    JSONReadWrite.deleteBook(checkoutMe.title);
+                    JSONReadWrite.addBook(checkoutMe);
                     checkedOut.add(media);
 
-                    System.out.println("------------" + bookCheckout + "has been successfully checked out!--------------");
+                    System.out.println("------------" + media + "has been successfully checked out!--------------");
                 } else {
-                    System.out.println(bookCheckout + " is not in the library. Please enter a different book to be checked out");
+                    System.out.println(media + " is not in the library.");
                 }
                 break;
 
             case "DVD":
-                System.out.println("Enter the title of the DVD to be checked out:");
-                String dvdCheckout = input.nextLine();
-                if (DVDs.dvdsList.contains(dvdCheckout)) {
+                int dvdIndex = DVDs.searchDVDs(media.title);
+                if (dvdIndex > 0) {
+                    DVD checkoutMe = DVDs.dvdsList.get(dvdIndex);
                     long num = media.getNumCopies();
                     num -= 1;
                     media.setNumCopies(num);
+                    JSONReadWrite.deleteDVD(checkoutMe.title);
+                    JSONReadWrite.addDVD(checkoutMe);
                     checkedOut.add(media);
-                    System.out.println("------------" + dvdCheckout + "has been successfully checked out!--------------");
+
+                    System.out.println("------------" + media + "has been successfully checked out!--------------");
                 } else {
-                    System.out.println(dvdCheckout + " is not in the library. Please enter a different book to be checked out");
+                    System.out.println(media + " is not in the library.");
                 }
                 break;
 
             case "Magazine":
-                System.out.println("Enter the title of the magazine to be checked out:");
-                String magazineCheckout = input.nextLine();
-                if (Magazines.magazineList.contains(magazineCheckout)) {
+                int magIndex = Magazines.searchMagazines(media.title);
+                if (magIndex > 0) {
+                    magazine checkoutMe = Magazines.magazineList.get(magIndex);
                     long num = media.getNumCopies();
                     num -= 1;
                     media.setNumCopies(num);
+                    JSONReadWrite.deleteMagazine(checkoutMe.title);
+                    JSONReadWrite.addMagazine(checkoutMe);
                     checkedOut.add(media);
-                    System.out.println("------------" + magazineCheckout + "has been successfully checked out!--------------");
+
+                    System.out.println("------------" + media + "has been successfully checked out!--------------");
                 } else {
-                    System.out.println(magazineCheckout + " is not in the library. Please enter a different book to be checked out");
+                    System.out.println(media + " is not in the library.");
                 }
                 break;
         }
