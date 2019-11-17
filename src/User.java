@@ -94,7 +94,7 @@ public class User {
             case "Book":
                 System.out.println("Enter new book title to be checked out");
                 String bookCheckout = input.nextLine();
-                if (Books.bookList.contains(bookCheckout)) {
+                if (Books.searchBooks(bookCheckout)>0) {
                     long num = media.getNumCopies();
                     num -= 1;
                     media.setNumCopies(num);
