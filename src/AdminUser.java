@@ -21,27 +21,18 @@ public class AdminUser extends User {
   * These methods adds a piece of media to the library
   * @param media is the object to be added
   */
-  public void AddMagazine(magazine media) {
+  public static void AddMagazine(magazine media) {
     JSONReadWrite.addMagazine(media);
     System.out.println(media + " has been added to the library");
   }
 
-  public void AddBook(book book) {
+  public static void AddBook(book book) {
     JSONReadWrite.addBook(book);
     System.out.println(book + " has been added to the library");
   }
 
-  public void AddItem(DVD dvd) {
+  public static void AddDVD(DVD dvd) {
     JSONReadWrite.addDVD(dvd);
-  }
-
-  /**
-   * Adds user to database, if they need to be added manually.
-   * @param user that should be added
-   */
-  public void AddUser(User user) {
-    JSONReadWrite.addUser(user);
-    System.out.println(user + " has been added to the library");
   }
 
   /**

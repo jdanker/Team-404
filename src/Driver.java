@@ -33,12 +33,16 @@ public class Driver {
                     System.out.print("Please enter your password: ");
                     String pw = userInput.next();
 
-                    // Checks if user is in the database.
-                    // TODO: Implement Login method.
-
+                    // Checks if user is in the data
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
+                    if(selectedUser.getAccountType() == "P") {
+                        if (selectedUser.getFines()>0) {
+                            System.out.println("You have unpaid fines! No books can be checked out until you pay your fines!");
+                            System.exit(0);
+                        }
+                    }
                     // Runs the appropriate menu according to account type or tell the user the login is invalid.
                     if (!isLoggedIn) {
                         System.out.println("The username or password entered is invalid.");
@@ -47,27 +51,34 @@ public class Driver {
                         runUserMenu(selectedUser, selectedUser.accountType);
                     }
                     UserInterface.printDashes();
+
+                    String type = selectedUser.getAccountType();
+                    runUserMenu(selectedUser, type);
+
+
+
                     break;
 
                 case 2:
-                    // TODO: somehow make the new user get stored in a JSON file
+
+                    userInput.nextLine();
                     System.out.println("Please enter your first name:");
-                    String firstName = userInput.next();
+                    String firstName = userInput.nextLine();
 
                     System.out.println("Please enter your last name:");
-                    String lastName = userInput.next();
+                    String lastName = userInput.nextLine();
 
                     System.out.println("Please enter your email address:");
-                    String email = userInput.next();
+                    String email = userInput.nextLine();
 
                     System.out.println("Please enter your local address:");
-                    String address = userInput.next();
+                    String address = userInput.nextLine();
 
                     System.out.println("Please enter your Date of Birth:");
-                    String DOB = userInput.next();
+                    String DOB = userInput.nextLine();
 
                     System.out.println("Please enter your phone number:");
-                    String phoneNumber = userInput.next();
+                    String phoneNumber = userInput.nextLine();
 
                     // Develops an unique user ID from the number of user in the system.
                     //ArrayList<User> users = JSONReadWrite.loadUsers();
@@ -75,6 +86,7 @@ public class Driver {
                     int idNum = (int) (Math.random()*10);
 
                     StandardUser newUser = new StandardUser(idNum, firstName, lastName, email, address, phoneNumber,idNum,"S", 0);
+                    JSONReadWrite.addUser(newUser);
                     System.out.println("New User, " + newUser.firstName + ", has been created.");
                     System.out.println("Your password is " + newUser.lastName + ".");
                     UserInterface.printDashes();
@@ -100,98 +112,395 @@ public class Driver {
      * @return an User object.
      */
     private static User login(String userName, String password) {
-        User temp = searchUser(userName);
-        assert temp != null;
-        if (temp.lastName.equals(password)) {
-            return temp;
-        }
-        return null;
-    }
-
-    private static User searchUser(String userName)
-    {
-        // Loads User ArrayList into a local ArrayList
-        ArrayList<User> users = JSONReadWrite.loadUsers();
-
-        // Makes sure the user list is not empty.
-        assert users != null;
-
-        // Checks if the user name and password matches existing users.
-        for (User user : users) {
-            if (user.firstName.equals(userName)) {
-                return user;
-            }
-        }
-        // If user was not found, it returns null.
-        return null;
+        return getUser(userName, password);
     }
 
     private static void runUserMenu(User selectedUser, String type) {
         switch (type) {
-            case "L":
-                AdminUser someUSer = (AdminUser) selectedUser;
-                runAdminMenu(someUSer);
+            case "L": //Admin user "L" for librarian
+                // Run Admin Menu
+                runAdminMenu(selectedUser);
                 break;
-
-            case "T":
-                // Run Teacher Menu sequence.
+            case "T": //Teacher user "T"
+                runTeacherMenu(selectedUser);
+            case "C": //ChildUser "C"
+                runChildMenu(selectedUser);
                 break;
-
-            case "C":
-                // Run Child User Menu sequence.
+            case "P": //StandardUser "P"
+                // Run Standard user Menu sequence.
+                runStandardMenu(selectedUser);
                 break;
-
             default:
-                // Run standard user sequence.
+                System.exit(0);
         }
     }
 
-    private static void runAdminMenu(AdminUser user) {
+    private static void runStandardMenu(User user)   {
+        Scanner input = new Scanner(System.in);
+            UserInterface.printStandardMenu();
+             String userInput = input.nextLine();
+             int parsedInput = Integer.parseInt(userInput);
+            int index;
+            Media media;
+            String title, type;
+
+            switch (parsedInput)  {
+                case 1:
+                    System.out.println("Enter the number of the type of media you would like to see:");
+                    System.out.println("1. Books");
+                    System.out.println("2. Magazines");
+                    System.out.println("3. DVDs");
+
+                    int mediaType = input.nextInt();
+                    switch (mediaType){
+                        case 1:
+                            Books.printBooks();
+                            break;
+
+                        case 2:
+                            Magazines.printMagazines();
+                            break;
+                        case 3:
+                            DVDs.printDVDs();
+                            break;
+                        default:
+                            System.out.println("Invalid input. Enter a number between 1-3");
+                            break;
+                    }
+                    break;
+                case 2:
+                    System.out.println("Holds: ");
+                    break;
+                case 3:
+                    System.out.println("Account Balance: " + user.fines);
+                    break;
+                case 4:
+                    System.out.println("Enter the type of the media to be checked out:");
+                    type = input.nextLine();
+                    switch(type){
+                        case "Book":
+                            System.out.println("Enter the title of the Book to be checked out: ");
+                            title = input.nextLine();
+                            index = Books.searchBooks(title);
+                            media = Books.bookList.get(index);
+                            user.checkoutMedia(media);
+                            break;
+                        case "DVD":
+                            System.out.println("Enter the title of the DVD to be checked out: ");
+                            title = input.nextLine();
+                            index = DVDs.searchDVDs(title);
+                            media = DVDs.dvdsList.get(index);
+                            user.checkoutMedia(media);
+                            break;
+                        case "Magazine":
+                            System.out.println("Enter the title of the Magazine to be checked out: ");
+                            title = input.nextLine();
+                            index = Magazines.searchMagazines(title);
+                            media = Magazines.magazineList.get(index);
+                            user.checkoutMedia(media);
+                            break;
+                        default:
+                            System.out.println("Please enter a valid type of media");
+                            break;
+                    }
+                    break;
+                case 5:
+                    System.out.println("Enter the name of the media to be checked in: ");
+                    break;
+                case 6:
+                    System.out.println("Please enter the type of media you would like to read the reviews of.");
+                    type = input.nextLine();
+                    System.out.println("Please input the name.");
+                    String name = input.nextLine();
+                switch(type) {
+                    case "Book":
+                        System.out.println("Retrieving reviews...");
+                        index = Books.searchBooks(name);
+                        book reviewBook = Books.bookList.get(index);
+                        System.out.println(reviewBook.reviews);
+
+                        System.out.println("Would you like to leave a review?");
+                            if(input.nextLine().equalsIgnoreCase("yes"))
+                            {
+                                System.out.println("Please enter your review: ");
+                                String newReview = input.nextLine();
+                                reviewBook.reviews += (", " + newReview);
+                                JSONReadWrite.deleteBook(name);
+                                JSONReadWrite.addBook(reviewBook);
+                            }
+                        break;
+                    case "DVD":
+                        System.out.println("Retrieving reviews...");
+                        index = DVDs.searchDVDs(name);
+                        DVD reviewDVD = DVDs.dvdsList.get(index);
+                        System.out.println(reviewDVD.reviews);
+
+                        System.out.println("Would you like to leave a review?");
+                        if(input.nextLine().equalsIgnoreCase("yes"))
+                        {
+                            System.out.println("Please enter your review: ");
+                            String newReview = input.nextLine();
+                            reviewDVD.reviews += (", " + newReview);
+                            JSONReadWrite.deleteDVD(name);
+                            JSONReadWrite.addDVD(reviewDVD);
+                        }
+                        break;
+                    case "Magazine":
+                        System.out.println("Retrieving reviews...");
+                        index = Magazines.searchMagazines(name);
+                        magazine reviewMag = Magazines.magazineList.get(index);
+                        System.out.println(reviewMag.reviews);
+
+                        System.out.println("Would you like to leave a review?");
+                        if(input.nextLine().equalsIgnoreCase("yes"))
+                        {
+                            System.out.println("Please enter your review: ");
+                            String newReview = input.nextLine();
+                            reviewMag.reviews += (", " + newReview);
+                            JSONReadWrite.deleteMagazine(name);
+                            JSONReadWrite.addMagazine(reviewMag);
+                        }
+                        break;
+                }
+                    break;
+                case 7:
+                    System.out.println("Logging out...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid Input. Please select a valid value");
+                    break;
+            }
+        }
+
+
+    private static void runChildMenu(User user)   {
+        Scanner input = new Scanner(System.in);
+        boolean loggedOut = false;
+        String inString;
+
+        while (!loggedOut)  {
+            UserInterface.printChildMenu();
+            int userInput = input.nextInt();
+
+            switch (userInput)  {
+                case 1:
+                    System.out.println("Enter the number of the type of media you would like to see:");
+                    System.out.println("1. Books");
+                    System.out.println("2. Magazines");
+                    System.out.println("3. DVDs");
+                    System.out.println("4. Exit to menu");
+
+                    userInput = input.nextInt();
+                    switch (userInput)  {
+                        case 1:
+                            Books.printBooks();
+                            break;
+                        case 2:
+                            Magazines.printMagazines();
+                            break;
+                        case 3:
+                            DVDs.printDVDs();
+                            break;
+                        case 4:
+                            return;
+                        default:
+                            System.out.println("Invalid input. Enter a number between 1-3");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Holds: ");
+                    break;
+                case 3:
+                    System.out.println("Enter the media to be checked in");
+                    break;
+                case 4:
+                    System.out.println("Logging out...");
+                    loggedOut = true;
+                    return;
+                default:
+                    System.out.println("Invalid Input. Please select a valid value");
+            }
+        }
+    }
+
+    private static void runTeacherMenu(User user)    {
+        Scanner input = new Scanner(System.in);
+        boolean loggedOut = false;
+        String inString;
+
+        while (!loggedOut)  {
+            UserInterface.printTeacherMenu();
+            String userInput = input.nextLine();
+            int parsedInput = Integer.parseInt(userInput);
+            int index;
+            Media media;
+            String title, type;
+
+            switch(parsedInput)   {
+                case 1:
+                    System.out.println("Enter the number of the type of media you would like to see:");
+                    System.out.println("1. Books");
+                    System.out.println("2. Magazines");
+                    System.out.println("3. DVDs");
+                    System.out.println("4. Exit to menu");
+
+                    userInput = input.nextLine();
+                    parsedInput = Integer.parseInt(userInput);
+                    switch (parsedInput)  {
+                        case 1:
+                            Books.printBooks();
+                            break;
+                        case 2:
+                            Magazines.printMagazines();
+                            break;
+                        case 3:
+                            DVDs.printDVDs();
+                            break;
+                        case 4:
+                            return;
+                        default:
+                            System.out.println("Invalid input. Enter a number between 1-3");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Holds: ");
+                    break;
+                case 3:
+                    System.out.println("Account Balance:" );
+                    break;
+                case 4:
+                    System.out.println("Enter the type of the media to be checked in:");
+                    type = input.nextLine();
+                    System.out.println("Enter the title of the media to be checked out: ");
+                    title = input.nextLine();
+                    switch(type)    {
+                        case "Book":
+                            index = Books.searchBooks(title);
+                            media = Books.bookList.get(index);
+                            user.checkoutMedia(media);
+                            break;
+                        case "DVD":
+                            index = DVDs.searchDVDs(title);
+                            media = DVDs.dvdsList.get(index);
+                            user.checkoutMedia(media);break;
+                        case "Magazine":
+                            index = Magazines.searchMagazines(title);
+                            media = Magazines.magazineList.get(index);
+                            user.checkoutMedia(media);
+                        default:
+                            System.out.println("Please enter a valid type of media");
+                    }
+
+                    break;
+                case 5:
+                    System.out.println("Enter the name of the media to be checked in:");
+                    break;
+                case 6:
+                    System.out.println("Logging out...");
+                    loggedOut = true;
+                    return;
+                default:
+                    System.out.println("Invalid Input. Please select a valid value");
+
+            }
+        }
+    }
+
+    private static void runAdminMenu(User user) {
         Scanner input = new Scanner(System.in);
         boolean loggedOut = false;
 
         while (!loggedOut) {
             UserInterface.printDashes();
             UserInterface.printAdminMenu();
-            int userinput = input.nextInt();
+            String userInput = input.nextLine();
+            int parsedInput = Integer.parseInt(userInput);
 
-            switch (userinput) {
+            switch (parsedInput) {
                 case 1:
+                    System.out.println("Please input the type of media. \n1. Book \n2. DVD \n3.Magazine");
+                    int mediaInput = Integer.parseInt(input.nextLine());
+
                     System.out.println("Please specify the ID of the new media:");
-                    long id = input.nextLong();
+                    long id = Long.parseLong(input.nextLine());
 
                     System.out.println("Please specify the title of the new media:");
-                    String title = input.next();
+                    String title = input.nextLine();
 
                     System.out.println("Please specify the year of the new media:");
-                    long year = input.nextLong();
+                    long year = Long.parseLong(input.nextLine());
 
                     System.out.println("Please specify the genre of the new media:");
-                    String genre = input.next();
+                    String genre = input.nextLine();
 
                     System.out.println("Please specify if the new media is a new release:");
-                    boolean newRelease = input.nextBoolean();
+                    boolean newRelease = Boolean.parseBoolean(input.nextLine());
 
                     System.out.println("Please specify how many copies of the new media is available:");
-                    long amount = input.nextLong();
+                    long amount = Long.parseLong(input.nextLine());
 
-                    //Media newMedia = new book(id, title, year, genre, newRelease, amount);
+                    switch (mediaInput) {
+                        case 1:
 
-                    //user.AddItem();
-                    break;
+                            System.out.println("Please specify the ISBN of the new book:");
+                            String ISBN = input.nextLine();
+
+                            System.out.println("Please specify the publisher of the new book:");
+                            String publisher = input.nextLine();
+
+                            System.out.println("Please specify the author of the new book:");
+                            String author = input.nextLine();
+
+                            book newbook = new book(id, title, year, genre, ISBN, publisher, author, amount, newRelease, "");
+
+                            AdminUser.AddBook(newbook);
+                            break;
+
+                        case 2:
+                            System.out.println("Please specify the publisher of the new magazine:");
+                            publisher = input.nextLine();
+
+                            System.out.println("Please specify the volume of the new magazine:");
+                            long volume = Long.parseLong(input.nextLine());
+
+                            System.out.println("Please specify the issue of the new magazine:");
+                            long issue = Long.parseLong(input.nextLine());
+
+
+
+                            magazine newMag = new magazine(id, title, year, genre, publisher, volume, issue, amount, newRelease, "");
+                            AdminUser.AddMagazine(newMag);
+                            break;
+
+                        case 3:
+                            System.out.println("Please input the actors on one line, separated by commas");
+                            String actors = input.nextLine();
+
+                            System.out.println("Please input the director of the DVD");
+                            String director = input.nextLine();
+
+                            DVD newDvd = new DVD(id, title, year, genre, actors, director, amount, newRelease, "");
+                            AdminUser.AddDVD(newDvd);
+                            break;
+                    }
+                break;
 
                 case 2:
-                    System.out.println("Specify the username of the user's account to add a fee: ");
-                    String userName = input.next();
+                    // adds fines to a user's current fine balance
+                    System.out.println("Enter the first name of the person you would like to apply fees to: ");
+                    String fName = input.nextLine();
+                    System.out.println("Enter the last name of the person you would like to apply fees to: ");
+                    String lName = input.nextLine();
 
-                    System.out.println("Specify the amount to be added: ");
-                    int feeAmount = input.nextInt();
-
-                    User aUser = searchUser(userName);
-                    assert aUser != null;
-                    user.AddFees(feeAmount, aUser);
-
-                    System.out.println("$"+ feeAmount + " has been added to " + aUser.firstName + "'s account balance.");
+                    User user1 = getUser(fName, lName);
+                    System.out.println("Enter the amount of fees to apply: ");
+                    double feeAdd = Double.parseDouble(input.nextLine());
+                    double curFee = user1.getFines() + feeAdd;
+                    user1.setFines(curFee);
+                    JSONReadWrite.deleteUser(fName, lName);
+                    JSONReadWrite.addUser(user1);
+                    System.out.println("Fees have been added. " + user1.firstName + "'s" + " have been updated to "+user1.getFines());
                     break;
 
                 case 3:
@@ -202,7 +511,27 @@ public class Driver {
 
                 default:
                     System.out.println("Invalid Input. Please select a valid value: (1 - 3)");
+                    break;
             }
         }
+    }
+//    helper method to search a user by name
+    public static User getUser(String fName, String lName){
+        ArrayList<User> users = JSONReadWrite.loadUsers();
+
+        // Makes sure the user list is not empty.
+        assert users != null;
+
+        // Checks if the user name and password matches existing users.
+        for (User user : users) {
+            if (user.firstName.equals(fName) && user.lastName.equals(lName)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public static void dueDateNotice(){
+
     }
 }

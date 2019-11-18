@@ -4,7 +4,7 @@ public class book extends Media {
     String publisher;
     String author;
 
-    public book(long id, String title, long year, String genre, String ISBN, String publisher, String author, long numCopies, boolean newArrival)
+    public book(long id, String title, long year, String genre, String ISBN, String publisher, String author, long numCopies, boolean newArrival, String reviews)
     {
         this.ID = id;
         this.title = title;
@@ -15,6 +15,7 @@ public class book extends Media {
         this.author = author;
         this.numCopies = numCopies;
         this.newRelease = newArrival;
+        this.reviews = reviews;
     }
 
     @Override
