@@ -51,10 +51,9 @@ public class Magazines {
             if (magazineList.get(i).title.equalsIgnoreCase(input))  {
                 retVal = i;
                 return retVal;
-            } else  {
-                System.out.println("Magazine not found");
             }
         }
+        System.out.println("Magazine not found");
         retVal = -1;
         return retVal;
     }
