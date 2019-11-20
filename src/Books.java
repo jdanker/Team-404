@@ -12,8 +12,8 @@ public class Books {
 	}
 
 	/**
-	 * Makes sure one instanc eof books is being used at a time
-	 * @return an insance of books
+	 * Makes sure one instance of books is being used at a time
+	 * @return an instance of books
 	 */
 	public static Books getInstance() {
 		if(books == null) {
