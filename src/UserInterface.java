@@ -28,8 +28,7 @@ public class UserInterface {
     public static void printAdminMenu() {
         System.out.println("1) Add New Item");
         System.out.println("2) Apply Fees");
-        System.out.println("3) Apply Fees");
-        System.out.println("4) Log Out");
+        System.out.println("3) Log Out");
         System.out.print("Select an option to proceed: ");
     }
 

@@ -37,7 +37,8 @@ public class Driver {
                     selectedUser = login(un, pw);
                     isLoggedIn = selectedUser != null;
 
-                    if(selectedUser.getAccountType() == "P") {
+                    assert selectedUser != null;
+                    if(selectedUser.getAccountType().equals("P")) {
                         if (selectedUser.getFines()>0) {
                             System.out.println("You have unpaid fines! No books can be checked out until you pay your fines!");
                             System.exit(0);
@@ -48,6 +49,7 @@ public class Driver {
                         System.out.println("The username or password entered is invalid.");
                     } else {
                         System.out.println("You are now logged in. Let's run something.");
+                        runUserMenu(selectedUser, selectedUser.accountType);
                     }
                     UserInterface.printDashes();
 
@@ -411,6 +413,7 @@ public class Driver {
         boolean loggedOut = false;
 
         while (!loggedOut) {
+            UserInterface.printDashes();
             UserInterface.printAdminMenu();
             String userInput = input.nextLine();
             int parsedInput = Integer.parseInt(userInput);
