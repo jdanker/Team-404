@@ -23,11 +23,12 @@ class UserTest {
     void checkoutMediaBook() {
         Media testbook = new book(1, "The Cat in the Hat", 2000, "Children", "9780761119753", "Random House", "Dr. Seuss", 2, false, " ");
         User user = Driver.getUser("Deja", "Scott");
+
         assert user != null;
         int priorSize = user.checkedOut.size();
         user.checkoutMedia(testbook);
-        System.out.println(user.checkedOut.size());
         int afterSize = user.checkedOut.size();
+
         if (priorSize < afterSize) {
             System.out.println("checkoutMediaBook: PASS");
         } else {
@@ -43,11 +44,12 @@ class UserTest {
     void checkoutMediaMagazine() {
         Media testbook = new magazine(0, "Popular Machinics", 0, " "," ", 0, 2, 2, false, " " );
         User user = Driver.getUser("Deja", "Scott");
+
         assert user != null;
         int priorSize = user.checkedOut.size();
         user.checkoutMedia(testbook);
-        System.out.println(user.checkedOut.size());
         int afterSize = user.checkedOut.size();
+
         if (priorSize < afterSize) {
             System.out.println("checkoutMediaMagazine: PASS");
         } else {
@@ -63,11 +65,12 @@ class UserTest {
     void checkoutMediaDVD() {
         Media testbook = new DVD(0, "Top Gun", 0," ", " ", " ", 2, false, "");
         User user = Driver.getUser("Deja", "Scott");
+
         assert user != null;
         int priorSize = user.checkedOut.size();
         user.checkoutMedia(testbook);
-        System.out.println(user.checkedOut.size());
         int afterSize = user.checkedOut.size();
+
         if (priorSize < afterSize) {
             System.out.println("checkoutMediaDVD: PASS");
         } else {
