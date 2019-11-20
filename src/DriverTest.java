@@ -8,7 +8,6 @@ class DriverTest {
 
     @BeforeEach
     void setUp() {
-
     }
 
     @AfterEach
@@ -20,14 +19,13 @@ class DriverTest {
      */
     @Test
     void getValidUser() {
-        Driver testDrive = new Driver();
         String[] user = new String[] {"Amy", "Smith"};
         boolean testResults;
 
-        User resultUser = testDrive.getUser(user[0], user[1]);
+        User result = Driver.getUser(user[0], user[1]);
 
-        assert resultUser != null;
-        testResults = resultUser.firstName.equals(user[0]) && resultUser.lastName.equals(user[1]);
+        assert result != null;
+        testResults = result.firstName.equals(user[0]) && result.lastName.equals(user[1]);
 
         if (testResults) {
             System.out.println("GetValidUser: PASSED");
@@ -41,12 +39,11 @@ class DriverTest {
      */
     @Test
     void getNullUser() {
-        Driver testDrive = new Driver();
         String[] user = new String[] {"Dave", "Watson"};
 
-        User resultUser = testDrive.getUser(user[0], user[1]);
+        User result = Driver.getUser(user[0], user[1]);
 
-        if (resultUser == null) {
+        if (result == null) {
             System.out.println("GetNullUser: Passed");
         } else {
             System.out.println("GetNullUser: FAILED");
